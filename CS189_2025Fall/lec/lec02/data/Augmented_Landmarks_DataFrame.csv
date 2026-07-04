@@ -1,0 +1,20 @@
+Landmark,Type,Height,Year Built,Campus
+Sather Gate,Gate,30,1910.0,UC Berkeley
+Campanile,Tower,307,1914.0,UC Berkeley
+Doe Library,Library,80,1911.0,UC Berkeley
+Memorial Glade,Open Space,0,,UC Berkeley
+Sproul Plaza,Plaza,0,1962.0,UC Berkeley
+North Gate,Gate,25,1909.0,UC Berkeley
+Moffitt Library,Library,60,1970.0,UC Berkeley
+Faculty Glade,Open Space,0,,UC Berkeley
+Lower Sproul Plaza,Plaza,0,2015.0,UC Berkeley
+77 Mass Ave Entrance,Gate,15,1939.0,MIT
+Green Building,Tower,295,1964.0,MIT
+Barker Library,Library,0,1916.0,MIT
+Killian Court,Open Space,0,1920.0,MIT
+Stata Center Courtyard,Plaza,0,2004.0,MIT
+Palm Drive Entrance,Gate,20,1890.0,Stanford
+Hoover Tower,Tower,285,1941.0,Stanford
+Green Library,Library,0,1919.0,Stanford
+Main Quad,Open Space,0,1891.0,Stanford
+White Plaza,Plaza,0,1964.0,Stanford
