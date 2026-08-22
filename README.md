@@ -34,7 +34,7 @@
 每个 Discussion 可能包含下面三类文件：
 
 - **原始题目**：课程发布的 Worksheet PDF。
-- **我的答案**：我根据题目整理并作答的 Markdown 文档，目前包含 Discussion 01–06。
+- **我的答案**：我根据题目整理并作答的 Markdown 文档，目前包含 Discussion 01–07。
 - **官方答案**：课程发布的 Solution PDF。
 
 | Discussion | 原始题目 | 我的答案 | 官方答案 |
@@ -45,7 +45,7 @@
 | 04 | [Worksheet 04](CS189_2025Fall/disc/disc4/Discussion%20Worksheet%2004.pdf) | [个人作答版](CS189_2025Fall/disc/disc4/Discussion%20Worksheet%2004%20answer.md) | [官方答案版](CS189_2025Fall/disc/disc4/Discussion%20Solution%2004.pdf) |
 | 05 | [Worksheet 05](CS189_2025Fall/disc/disc5/Discussion%20Worksheet%2005.pdf) | [个人作答版](CS189_2025Fall/disc/disc5/Discussion%20Worksheet%2005%20answer.md) | [官方答案版](CS189_2025Fall/disc/disc5/Discussion%20Solution%2005.pdf) |
 | 06 | [Worksheet 06](CS189_2025Fall/disc/disc6/Discussion%20Worksheet%2006.pdf) | [个人作答版](CS189_2025Fall/disc/disc6/Discussion%20Worksheet%2006%20answer.md) | [官方答案版](CS189_2025Fall/disc/disc6/Discussion%20Solution%2006.pdf) |
-| 07 | [Worksheet 07](CS189_2025Fall/disc/disc7/Discussion%20Worksheet%2007.pdf) | — | [官方答案版](CS189_2025Fall/disc/disc7/Discussion%20Solution%2007.pdf) |
+| 07 | [Worksheet 07](CS189_2025Fall/disc/disc7/Discussion%20Worksheet%2007.pdf) | [个人作答版](CS189_2025Fall/disc/disc7/Discussion%20Worksheet%2007%20answer.md) | [官方答案版](CS189_2025Fall/disc/disc7/Discussion%20Solution%2007.pdf) |
 | 08 | [Worksheet 08](CS189_2025Fall/disc/disc8/Discussion%20Worksheet%2008.pdf) | — | [官方答案版](CS189_2025Fall/disc/disc8/Discussion%20Solution%2008.pdf) |
 | 09 | [Worksheet 09](CS189_2025Fall/disc/disc9/Discussion%20Worksheet%2009.pdf) | — | [官方答案版](CS189_2025Fall/disc/disc9/Discussion%20Solution%2009.pdf) |
 | 10 | [Worksheet 10](CS189_2025Fall/disc/disc10/Discussion%20Worksheet%2010.pdf) | — | [官方答案版](CS189_2025Fall/disc/disc10/Discussion%20Solution%2010.pdf) |
