@@ -46,25 +46,25 @@ Lecture 目录收录了 Fall 2025 发布的 24 份讲义 PDF，覆盖 Lecture 01
 每个 Discussion 可能包含下面三类文件：
 
 - **原始题目**：课程发布的 Worksheet PDF。
-- **我的答案**：我根据题目整理并作答的 Markdown 文档，目前包含 Discussion 01–07。
+- **我的答案**：我根据题目整理并作答的 Markdown 文档，目前包含 Discussion 01–09。
 - **官方答案**：课程发布的 Solution PDF。
 
 | Discussion | 原始题目 | 我的答案 | 官方答案 |
 | --- | --- | --- | --- |
-| 01 | [Worksheet 01](CS189_2025Fall/disc/disc1/Discussion%20Worksheet%2001.pdf) | [个人作答版](CS189_2025Fall/disc/disc1/Discussion%20Worksheet%2001%20answer.md) | [官方答案版](CS189_2025Fall/disc/disc1/Discussion%20Solution%2001.pdf) |
-| 02 | [Worksheet 02](CS189_2025Fall/disc/disc2/Discussion%20Worksheet%2002.pdf) | [个人作答版](CS189_2025Fall/disc/disc2/Discussion%20Worksheet%2002%20answer.md) | [官方答案版](CS189_2025Fall/disc/disc2/Discussion%20Solution%2002.pdf) |
-| 03 | [Worksheet 03](CS189_2025Fall/disc/disc3/Discussion%20Worksheet%2003.pdf) | [个人作答版](CS189_2025Fall/disc/disc3/Discussion%20Worksheet%2003%20answer.md) | [官方答案版](CS189_2025Fall/disc/disc3/Discussion%20Solution%2003.pdf) |
-| 04 | [Worksheet 04](CS189_2025Fall/disc/disc4/Discussion%20Worksheet%2004.pdf) | [个人作答版](CS189_2025Fall/disc/disc4/Discussion%20Worksheet%2004%20answer.md) | [官方答案版](CS189_2025Fall/disc/disc4/Discussion%20Solution%2004.pdf) |
-| 05 | [Worksheet 05](CS189_2025Fall/disc/disc5/Discussion%20Worksheet%2005.pdf) | [个人作答版](CS189_2025Fall/disc/disc5/Discussion%20Worksheet%2005%20answer.md) | [官方答案版](CS189_2025Fall/disc/disc5/Discussion%20Solution%2005.pdf) |
-| 06 | [Worksheet 06](CS189_2025Fall/disc/disc6/Discussion%20Worksheet%2006.pdf) | [个人作答版](CS189_2025Fall/disc/disc6/Discussion%20Worksheet%2006%20answer.md) | [官方答案版](CS189_2025Fall/disc/disc6/Discussion%20Solution%2006.pdf) |
-| 07 | [Worksheet 07](CS189_2025Fall/disc/disc7/Discussion%20Worksheet%2007.pdf) | [个人作答版](CS189_2025Fall/disc/disc7/Discussion%20Worksheet%2007%20answer.md) | [官方答案版](CS189_2025Fall/disc/disc7/Discussion%20Solution%2007.pdf) |
-| 08 | [Worksheet 08](CS189_2025Fall/disc/disc8/Discussion%20Worksheet%2008.pdf) | — | [官方答案版](CS189_2025Fall/disc/disc8/Discussion%20Solution%2008.pdf) |
-| 09 | [Worksheet 09](CS189_2025Fall/disc/disc9/Discussion%20Worksheet%2009.pdf) | — | [官方答案版](CS189_2025Fall/disc/disc9/Discussion%20Solution%2009.pdf) |
+| 01 | [Worksheet 01](CS189_2025Fall/disc/disc1/Discussion%20Worksheet%2001.pdf) | [个人答案](CS189_2025Fall/disc/disc1/Discussion%20Worksheet%2001%20answer.md) | [官方答案版](CS189_2025Fall/disc/disc1/Discussion%20Solution%2001.pdf) |
+| 02 | [Worksheet 02](CS189_2025Fall/disc/disc2/Discussion%20Worksheet%2002.pdf) | [个人答案](CS189_2025Fall/disc/disc2/Discussion%20Worksheet%2002%20answer.md) | [官方答案版](CS189_2025Fall/disc/disc2/Discussion%20Solution%2002.pdf) |
+| 03 | [Worksheet 03](CS189_2025Fall/disc/disc3/Discussion%20Worksheet%2003.pdf) | [个人答案](CS189_2025Fall/disc/disc3/Discussion%20Worksheet%2003%20answer.md) | [官方答案版](CS189_2025Fall/disc/disc3/Discussion%20Solution%2003.pdf) |
+| 04 | [Worksheet 04](CS189_2025Fall/disc/disc4/Discussion%20Worksheet%2004.pdf) | [个人答案](CS189_2025Fall/disc/disc4/Discussion%20Worksheet%2004%20answer.md) | [官方答案版](CS189_2025Fall/disc/disc4/Discussion%20Solution%2004.pdf) |
+| 05 | [Worksheet 05](CS189_2025Fall/disc/disc5/Discussion%20Worksheet%2005.pdf) | [个人答案](CS189_2025Fall/disc/disc5/Discussion%20Worksheet%2005%20answer.md) | [官方答案版](CS189_2025Fall/disc/disc5/Discussion%20Solution%2005.pdf) |
+| 06 | [Worksheet 06](CS189_2025Fall/disc/disc6/Discussion%20Worksheet%2006.pdf) | [个人答案](CS189_2025Fall/disc/disc6/Discussion%20Worksheet%2006%20answer.md) | [官方答案版](CS189_2025Fall/disc/disc6/Discussion%20Solution%2006.pdf) |
+| 07 | [Worksheet 07](CS189_2025Fall/disc/disc7/Discussion%20Worksheet%2007.pdf) | [个人答案](CS189_2025Fall/disc/disc7/Discussion%20Worksheet%2007%20answer.md) | [官方答案版](CS189_2025Fall/disc/disc7/Discussion%20Solution%2007.pdf) |
+| 08 | [Worksheet 08](CS189_2025Fall/disc/disc8/Discussion%20Worksheet%2008.pdf) | [个人答案](CS189_2025Fall/disc/disc8/Discussion%20Worksheet%2008%20answer.md) | [官方答案版](CS189_2025Fall/disc/disc8/Discussion%20Solution%2008.pdf) |
+| 09 | [Worksheet 09](CS189_2025Fall/disc/disc9/Discussion%20Worksheet%2009.pdf) | [个人答案](CS189_2025Fall/disc/disc9/Discussion%20Worksheet%2009%20answer.md) | [官方答案版](CS189_2025Fall/disc/disc9/Discussion%20Solution%2009.pdf) |
 | 10 | [Worksheet 10](CS189_2025Fall/disc/disc10/Discussion%20Worksheet%2010.pdf) | — | [官方答案版](CS189_2025Fall/disc/disc10/Discussion%20Solution%2010.pdf) |
 | 11 | [Worksheet 11](CS189_2025Fall/disc/disc11/Discussion%20Worksheet%2011.pdf) | — | [官方答案版](CS189_2025Fall/disc/disc11/Discussion%20Solution%2011.pdf) |
 | 12 | [Worksheet 12](CS189_2025Fall/disc/disc12/Discussion%20Worksheet%2012.pdf) | — | [官方答案版](CS189_2025Fall/disc/disc12/Discussion%20Solution%2012.pdf) |
 
-> 说明：个人作答版是学习过程中的整理与推导，请以官方答案版作为课程标准参考。
+> 说明：个人答案是学习过程中的整理与推导，请以官方答案版作为课程标准参考。
 
 ## 环境配置
 
