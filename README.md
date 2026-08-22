@@ -3,7 +3,7 @@
 <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border: 0; width: 100%;">
   <tr style="border: 0;">
     <td style="border: 0;">
-      <p>CS 189/289A 的课程资料、Discussion 题目与学习笔记。</p>
+      <p>CS 189/289A 的课程讲义、Discussion 题目与学习笔记。</p>
       <p>课程官网：<a href="https://eecs189.org/fa25/">eecs189.org/fa25</a></p>
     </td>
     <td align="center" width="35%" style="border: 0;">
@@ -14,9 +14,21 @@
 
 ## 仓库结构
 
-- [Lecture](CS189_2025Fall/lec/)：课堂演示 Notebook
+- [Lecture](CS189_2025Fall/lec/)：课程讲义 PDF、课堂 Notebook 与配套文件
 - [Homework](CS189_2025Fall/hw/)：课程作业
 - [Discussion](CS189_2025Fall/disc/)：Discussion 题目、答案与 Notebook
+
+## Lecture 资料
+
+Lecture 目录收录了 Fall 2025 发布的 24 份讲义 PDF，覆盖 Lecture 01–22、24 和 25。Lecture 23 是嘉宾讲座，Lecture 26 是研究专题与课程总结；课程网站没有发布这两讲的 PDF，因此仓库中没有添加占位文件。
+
+| 类型 | 收录内容 |
+| --- | --- |
+| 讲义 | 24 份 PDF，每个文件位于对应的 `lecXX/lecXX.pdf` |
+| Notebook | 19 个文件，分布在 17 个 Lecture 目录中 |
+| 配套文件 | Berkeley 样式表、课程数据和 Notebook 使用的图片 |
+
+[查看 Lecture 逐讲索引](CS189_2025Fall/lec/README.md)
 
 ## Homework 进度
 
