@@ -46,7 +46,7 @@ Lecture 目录收录了 Fall 2025 发布的 24 份讲义 PDF，覆盖 Lecture 01
 每个 Discussion 可能包含下面三类文件：
 
 - **原始题目**：课程发布的 Worksheet PDF。
-- **我的答案**：我根据题目整理并作答的 Markdown 文档，目前包含 Discussion 01–09。
+- **我的答案**：我根据题目整理并作答的 Markdown 文档，目前包含 Discussion 01–10。
 - **官方答案**：课程发布的 Solution PDF。
 
 | Discussion | 原始题目 | 我的答案 | 官方答案 |
@@ -60,7 +60,7 @@ Lecture 目录收录了 Fall 2025 发布的 24 份讲义 PDF，覆盖 Lecture 01
 | 07 | [Worksheet 07](CS189_2025Fall/disc/disc7/Discussion%20Worksheet%2007.pdf) | [个人答案](CS189_2025Fall/disc/disc7/Discussion%20Worksheet%2007%20answer.md) | [官方答案版](CS189_2025Fall/disc/disc7/Discussion%20Solution%2007.pdf) |
 | 08 | [Worksheet 08](CS189_2025Fall/disc/disc8/Discussion%20Worksheet%2008.pdf) | [个人答案](CS189_2025Fall/disc/disc8/Discussion%20Worksheet%2008%20answer.md) | [官方答案版](CS189_2025Fall/disc/disc8/Discussion%20Solution%2008.pdf) |
 | 09 | [Worksheet 09](CS189_2025Fall/disc/disc9/Discussion%20Worksheet%2009.pdf) | [个人答案](CS189_2025Fall/disc/disc9/Discussion%20Worksheet%2009%20answer.md) | [官方答案版](CS189_2025Fall/disc/disc9/Discussion%20Solution%2009.pdf) |
-| 10 | [Worksheet 10](CS189_2025Fall/disc/disc10/Discussion%20Worksheet%2010.pdf) | — | [官方答案版](CS189_2025Fall/disc/disc10/Discussion%20Solution%2010.pdf) |
+| 10 | [Worksheet 10](CS189_2025Fall/disc/disc10/Discussion%20Worksheet%2010.pdf) | [个人答案](CS189_2025Fall/disc/disc10/Discussion%20Worksheet%2010%20answer.md) | [官方答案版](CS189_2025Fall/disc/disc10/Discussion%20Solution%2010.pdf) |
 | 11 | [Worksheet 11](CS189_2025Fall/disc/disc11/Discussion%20Worksheet%2011.pdf) | — | [官方答案版](CS189_2025Fall/disc/disc11/Discussion%20Solution%2011.pdf) |
 | 12 | [Worksheet 12](CS189_2025Fall/disc/disc12/Discussion%20Worksheet%2012.pdf) | — | [官方答案版](CS189_2025Fall/disc/disc12/Discussion%20Solution%2012.pdf) |
 
