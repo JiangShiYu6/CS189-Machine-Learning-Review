@@ -84,10 +84,48 @@ r = y - X w^\ast
 
 \begin{enumerate}[label=(\alph*)]
     \item (\textit{2 pts}) Use the normal equation to show that:  $X^\top r = 0$.
+
+    \textbf{Answer.} The normal equation gives $X^\top Xw^\ast=X^\top y$.
+    Substituting $r=y-Xw^\ast$, we obtain
+    \[
+        X^\top r=X^\top(y-Xw^\ast)
+        =X^\top y-X^\top Xw^\ast=0.
+    \]
+
     \item (\textit{2 pts}) Use the presence of a bias term (encoded in the column of 1s in $X$) to show that the sum of the residuals is 0.
+
+    \textbf{Answer.} Since $X$ contains a column $\mathbf{1}$ of all ones,
+    the corresponding component of $X^\top r=0$ is
+    \[
+        \mathbf{1}^\top r=\sum_{n=1}^N r_n=0.
+    \]
+
     \item (\textit{2 pts}) Suppose we add a point $(x_j, y_j)$ to our dataset with a very large $|y_j|$ but $x_j$ is close to the mean of $x$.
     Predict qualitatively how $w$ will change and explain why least squares is sensitive to such a point.
     How can you modify the loss to make the model more robust to outliers?
+
+    \textbf{Answer.} Assuming the point has a large residual, it pulls the
+    prediction at the feature mean toward $y_j$, primarily shifting the
+    intercept. If $x_j$ equals the original feature mean exactly, the slopes
+    remain unchanged when the least-squares solution is unique. If it is only
+    close to the mean, the slopes can also change; a sufficiently large residual
+    can make this change substantial.
+
+    Squared loss gives a large residual a disproportionately large penalty.
+    The point's gradient contribution is
+    $-x_j(y_j-x_j^\top w)$, which grows without bound with the residual.
+    To reduce this sensitivity, use absolute-error loss or Huber loss:
+    \[
+        L(w)=\sum_{n=1}^N \rho_\delta(y_n-x_n^\top w),
+        \qquad
+        \rho_\delta(r)=
+        \begin{cases}
+            \frac12 r^2, & |r|\leq\delta,\\
+            \delta\bigl(|r|-\frac12\delta\bigr), & |r|>\delta,
+        \end{cases}
+        \quad \delta>0.
+    \]
+    Huber loss penalizes large residuals linearly, limiting their influence.
 \end{enumerate}
 
 \newpage
@@ -112,15 +150,64 @@ Consider a dataset $\mathcal{D} = \{(x_n, y_n)\}_{n=1}^N$ with $x_n \in \mathbb{
         A = \operatorname{diag}(\alpha_1,\dots,\alpha_n)\in\mathbb{R}^{N\times N}.
         \]
         Your answer, should not contain any summations.
+
+        \textbf{Answer.} The diagonal matrix $A$ weights the squared residuals:
+        \[
+            \boxed{L(w)=(y-Xw)^\top A(y-Xw).}
+        \]
+
         \item (\textit{2 pts}) Compute the gradient of the loss and express your answer in matrix form (no summations). You can do this by working with the summation form and taking partial derivatives or by using the following gradient identities:
         \begin{align*}
             \nabla_w \left(u^\top w\right) &= u \\
             \nabla_w \left( w^\top A w  \right)&= (A + A^\top) w  
         \end{align*}
+
+        \textbf{Answer.} Since $A^\top=A$, expanding the loss gives
+        \[
+            L(w)=y^\top Ay-2w^\top X^\top Ay+w^\top X^\top AXw.
+        \]
+        The first term is constant in $w$, and $X^\top AX$ is symmetric.
+        Applying the given gradient identities yields
+        \[
+            \boxed{\nabla_w L(w)=-2X^\top Ay+2X^\top AXw
+            =2X^\top A(Xw-y).}
+        \]
         
         \item (\textit{3 pts}) Set the gradient equal to zero, and solve for the closed-form solution for $w^\ast$ that minimizes the weighted least squares objective. 
         in terms of $X$, $y$, and $A$, assuming $X^\top A X$ is invertible.
+
+        \textbf{Answer.} Setting the gradient to zero gives
+        \[
+            2X^\top A(Xw^\ast-y)=0
+            \quad\Longrightarrow\quad X^\top AXw^\ast=X^\top Ay.
+        \]
+        Since $X^\top AX$ is invertible,
+        \[
+            \boxed{w^\ast=(X^\top AX)^{-1}X^\top Ay.}
+        \]
+        The Hessian $2X^\top AX$ is positive definite under this assumption,
+        so this is the unique global minimizer.
+
         \item (\textit{3 pts}) Under what condition is $X^\top A X$ guaranteed to be invertible? Can we derive a simpler condition when $\alpha_i > 0$?
+
+        \textbf{Answer.} For nonnegative weights, let
+        $B=A^{1/2}X$. Then $X^\top AX=B^\top B$, and for every vector $v$,
+        \[
+            v^\top X^\top AXv=\|Bv\|_2^2.
+        \]
+        Thus $X^\top AX$ is positive definite, and hence invertible,
+        exactly when $B$ has no nonzero null vector:
+        \[
+            \boxed{\operatorname{rank}(A^{1/2}X)=D+1.}
+        \]
+        Equivalently, the rows of $X$ with positive weights must form a
+        matrix of full column rank. If every $\alpha_i>0$, then $A^{1/2}$
+        is invertible and preserves rank, so the condition simplifies to
+        \[
+            \boxed{\operatorname{rank}(X)=D+1.}
+        \]
+        Positive weights alone do not suffice if the columns of $X$
+        are linearly dependent.
     \end{enumerate}
 
 \newpage
@@ -139,12 +226,52 @@ where \(N_k\) is the number of points that have been assigned to cluster \(k\) s
 
 \begin{enumerate}[label=(\alph*)]
     \item (\textit{3 pts}) Explain how this sequential update differs from batch K-means in terms of memory and computation. \textit{Hint: How often is each data point used in regular K-means compared to online K-means?}
+
+    \textbf{Answer.} Batch K-means typically stores the entire dataset and
+    revisits every point in each iteration to recompute assignments and centers.
+    The online version described here processes each point once upon arrival
+    and immediately updates its nearest center. It only needs to retain the
+    centers, cluster counts, and current point, rather than all past data.
+    For $N$ points in $d$ dimensions and $K$ clusters, online storage is
+    $O(Kd+K+d)$, compared with $O(Nd+Kd)$ for a typical batch implementation.
+    With direct nearest-center search, online processing costs $O(NKd)$ for
+    one pass, while $T$ batch iterations cost $O(TNKd)$.
     
     \item (\textit{5 pts}) Show that after each update, the objective function
     \[
     E(\{\mu_k\}) = \sum_{n=1}^N \min_k \lVert x_n - \mu_k \rVert^2
     \]
     does not increase.  
+
+    \textbf{Answer.} As stated, this claim does not hold for the online update
+    and the objective evaluated on the full dataset. Consider $K=1$ and the
+    one-dimensional stream $x_1=0$, $x_2=2$, $x_3=-2$. After processing $x_1$,
+    the center is $\mu=0$, giving the full-data objective
+    \[
+        E(0)=0^2+2^2+(-2)^2=8.
+    \]
+    When $x_2=2$ arrives, the cluster count becomes $N_1=2$, so
+    \[
+        \mu'=0+\frac12(2-0)=1.
+    \]
+    Evaluating on the same three points gives
+    \[
+        E(1)=(0-1)^2+(2-1)^2+(-2-1)^2=11>8.
+    \]
+    Thus an online update can increase the stated total objective.
+
+    A weaker statement does hold: the current point's loss cannot increase.
+    Writing $\eta=1/N_k\in(0,1]$, the update gives
+    \[
+        x_n-\mu_k'=(1-\eta)(x_n-\mu_k),
+        \qquad
+        \|x_n-\mu_k'\|^2=(1-\eta)^2\|x_n-\mu_k\|^2
+        \leq\|x_n-\mu_k\|^2.
+    \]
+    Since $k$ was a nearest center before the update, the current point's
+    nearest-center loss also cannot increase. However, other points may move
+    farther from this center, so this inequality does not establish a decrease
+    in the sum over the dataset.
 \end{enumerate}    
 \newpage
 
@@ -175,21 +302,80 @@ Here we will use $\alpha=3$ and $\beta=3$:
 
 \begin{enumerate}[label=(\alph*)]
     \item (\textit{2 pts}) Write the likelihood $p(\mathcal{D} | Y)$ of the data given $Y$.
+
+    \textbf{Answer.} Independence of the observations gives
+    \[
+        p(\mathcal D\mid Y)=\prod_{n=1}^N Y^{X_n}(1-Y)^{1-X_n}
+        =\boxed{Y^{N_1}(1-Y)^{N_0}.}
+    \]
  
     \item (\textit{2 pts}) Compute the derivative of the log-likelihood function with respect to $Y$ and solve for the MLE estimate for $Y$.
+
+    \textbf{Answer.} The log-likelihood and its derivative are
+    \[
+        \ell(Y)=N_1\log Y+N_0\log(1-Y),\qquad
+        \ell'(Y)=\frac{N_1}{Y}-\frac{N_0}{1-Y}.
+    \]
+    For $N_1,N_0>0$, setting the derivative to zero yields
+    $N_1(1-Y)=N_0Y$, hence $\boxed{\hat Y_{\mathrm{MLE}}=N_1/N}$.
+    The second derivative is $-N_1/Y^2-N_0/(1-Y)^2<0$.
+    If all observations are tails or heads, the maximum over $[0,1]$
+    is at $0$ or $1$, respectively, consistent with this formula.
    
     
     \item (\textit{6 pts}) Write the posterior distribution $p(Y|\mathcal{D})$.  Express this posterior in the form of a Beta distribution. What are the posterior values of $\alpha$ and $\beta$ based on the prior values of $\alpha$ and $\beta$ as well as $N_0$ and $N_1$?
+
+    \textbf{Answer.} Bayes' rule gives
+    \[
+        p(Y\mid\mathcal D)\propto p(\mathcal D\mid Y)p(Y)
+        \propto Y^{N_1+\alpha-1}(1-Y)^{N_0+\beta-1}.
+    \]
+    Thus $\boxed{Y\mid\mathcal D\sim\operatorname{Beta}(\alpha+N_1,\beta+N_0)}$,
+    with normalized density
+    \[
+        p(Y\mid\mathcal D)=
+        \frac{Y^{\alpha+N_1-1}(1-Y)^{\beta+N_0-1}}
+             {B(\alpha+N_1,\beta+N_0)},\quad 0<Y<1.
+    \]
+    For the specified prior, the posterior parameters are $N_1+3$ and $N_0+3$.
     
     \item (\textit{4 pts}) Compute the derivative of the log-posterior and solve for the MAP Estimate.
 
+    \textbf{Answer.} Ignoring constants independent of $Y$,
+    \[
+        \frac{d}{dY}\log p(Y\mid\mathcal D)
+        =\frac{N_1+\alpha-1}{Y}-\frac{N_0+\beta-1}{1-Y}.
+    \]
+    Setting this to zero gives, when both posterior parameters exceed one,
+    \[
+        \hat Y_{\mathrm{MAP}}=\frac{N_1+\alpha-1}{N+\alpha+\beta-2}
+        =\boxed{\frac{N_1+2}{N+4}}\quad(\alpha=\beta=3).
+    \]
+    Here the log-posterior has strictly negative second derivative,
+    so this stationary point is its unique maximum.
+
     \item (\textit{2 pts}) In a 1 sentence, what is the difference between the MLE and MAP estimates? Note: simply putting the your solutions to the previous parts is not sufficient. 
+
+    \textbf{Answer.} MLE maximizes the likelihood using only the observed data,
+    whereas MAP incorporates prior beliefs and maximizes the posterior density.
     
     \item  (\textit{5 pts}) How would you increase or decrease the regularization by varying $\alpha$ and $\beta$? \textit{Hint: Regularization was covered in the \hyperlink{https://drive.google.com/file/d/1s2yjJX2L93fuT9Zc96BRJ92H-D7MMrvg/view}{bias variance trade off lectures}: more regularization results in a higher bias and lower variance. }
+
+    \textbf{Answer.} Keep the prior symmetric and set $\alpha=\beta=a\geq1$.
+    Then
+    \[
+        \hat Y_{\mathrm{MAP}}=
+        \frac{N}{N+2(a-1)}\hat Y_{\mathrm{MLE}}
+        +\frac{2(a-1)}{N+2(a-1)}\frac12.
+    \]
+    Increasing $a$ strengthens shrinkage toward $1/2$, reducing variance
+    while generally increasing bias when the true probability differs from
+    $1/2$. Decreasing $a$ toward $1$ weakens this regularization; at $a=1$
+    the prior is uniform and MAP agrees with MLE. Keeping $\alpha=\beta$
+    preserves the prior center while changing its strength.
     
   
 \end{enumerate}
 
 
 \end{document}
-

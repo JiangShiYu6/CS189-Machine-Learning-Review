@@ -1,1 +1,15 @@
 *.zip
+
+# Local environments, downloaded datasets, and generated working files
+/tmp/
+.venv/
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/
+.OTTER_LOG
+*.aux
+*.fdb_latexmk
+*.fls
+*.out
+*.log
+CS189_2025Fall/hw/hw2/clustered_prompts*.csv

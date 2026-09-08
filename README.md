@@ -36,10 +36,12 @@ Lecture 目录收录了 Fall 2025 发布的 24 份讲义 PDF，覆盖 Lecture 01
 | --- | --- | --- |
 | HW0 | 已完成 | [Notebook](CS189_2025Fall/hw/hw0_demo/hw.ipynb) |
 | HW1 | 已完成 | [作业目录](CS189_2025Fall/hw/hw1/) · [书面题答案](CS189_2025Fall/hw/hw1/hw1_written%20answer.md) |
-| HW2 | 未完成 | [作业目录](CS189_2025Fall/hw/hw2/) |
+| HW2 | 已完成 | [运行说明与验证记录](CS189_2025Fall/hw/hw2/README.md) · [书面题 PDF](CS189_2025Fall/hw/hw2/written.pdf) · [论文问答](CS189_2025Fall/hw/hw2/hw2_paper_answer.md) |
 | HW3 | 未完成 | [作业目录](CS189_2025Fall/hw/hw3/) |
 | HW4 | 未完成 | [作业目录](CS189_2025Fall/hw/hw4/) |
 | HW5 | 未完成 | [作业目录](CS189_2025Fall/hw/hw5/) |
+
+HW2 已补齐书面题、论文问答及全部三个 Notebook（含 `legacy` 旧版），并保留实际数据运行结果。Online K-means 的“每次更新总损失不增加”命题按原题条件不成立，书面答案提供反例，并证明当前样本损失不增加这一较弱结论。
 
 ## Discussion 资料
 
