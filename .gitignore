@@ -13,3 +13,5 @@ __pycache__/
 *.out
 *.log
 CS189_2025Fall/hw/hw2/clustered_prompts*.csv
+CS189_2025Fall/hw/hw3/demo_graph.typ
+CS189_2025Fall/hw/hw3/demo_graph.pdf

@@ -1,6 +1,7 @@
 git+https://github.com/BerkeleyML/otter-grader-189.git@master#egg=otter_grader
 tqdm
 matplotlib
+typst
 plotly
 numpy>=1.21.0
 pandas>=1.3.0

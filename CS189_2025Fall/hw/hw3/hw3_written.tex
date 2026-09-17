@@ -27,6 +27,7 @@
 
 % ---------- Running Header / Footer ----------
 \pagestyle{fancy}
+\setlength{\headheight}{14pt}
 \fancyhf{}
 \lhead{\textbf{CS 189/289A}}
 \rhead{Fall 2025}
@@ -63,6 +64,11 @@ not looked at anyone else’s solution. I have given credit to all external
 sources I consulted.”
 \end{quote}
 
+\par\smallskip
+\noindent\textit{AI assistance disclosure:} OpenAI Codex assisted with explanations,
+solution drafting, implementation, and verification. The honor-code statement above
+is part of the assignment template and has not been signed.
+
 \newpage
 
 % ---------- Questions ----------
@@ -75,11 +81,64 @@ f(\textbf{x}) = \frac{x_1}{x_2}e^{x_2 + x_3} - x_2^2
 \begin{enumerate}[label=\textbf{Q\arabic*.}, leftmargin=2.2em]
 
 \item \textbf{Constructing the Computation Graph} Draw the computation graph (check out lecture 12 for reference). We recommend handwriting it instead of using \LaTeX.
-\vspace*{10\baselineskip}
+\par\smallskip
+\textbf{Solution.} Define $a=x_1/x_2$, $b=x_2+x_3$, $c=e^b$,
+$d=ac$, and $h=x_2^2$, so that $f=d-h$.
+\begin{center}
+\begin{tikzpicture}[>=Stealth, every node/.style={draw, rounded corners,
+  inner sep=5pt, font=\small}]
+  \node (x1) at (0,1.5) {$x_1$};
+  \node (x2) at (0,0) {$x_2$};
+  \node (x3) at (0,-1.5) {$x_3$};
+  \node (a) at (2.5,1.5) {$a=x_1/x_2$};
+  \node (b) at (2.5,-1.5) {$b=x_2+x_3$};
+  \node (c) at (5,-1.5) {$c=e^b$};
+  \node (d) at (7,1.5) {$d=ac$};
+  \node (h) at (5,0) {$h=x_2^2$};
+  \node (f) at (9.5,0) {$f=d-h$};
+  \draw[->] (x1) -- (a);
+  \draw[->] (x2) -- (a);
+  \draw[->] (x2) -- (b);
+  \draw[->] (x3) -- (b);
+  \draw[->] (b) -- (c);
+  \draw[->] (a) -- (d);
+  \draw[->] (c) -- (d);
+  \draw[->] (x2) -- (h);
+  \draw[->] (d) -- (f);
+  \draw[->] (h) -- (f);
+\end{tikzpicture}
+\end{center}
 
 \item \textbf{Computing Adjoints}
 Now, compute the adjoint for each node in your computation graph with respect to $\textbf{x} = [x_1 \ \ x_2 \ \ x_3] = [1 \ \ 2 \ \ 3]$. What is the gradient with respect to $\textbf{x}$? We recommend that you use your computation graph and write it out instead of typing.
-\vspace*{14\baselineskip}
+\par\smallskip
+\textbf{Solution.} Let $\bar v=\partial f/\partial v$. The forward values are
+\[
+a=\tfrac12,\quad b=5,\quad c=e^5,\quad
+d=\tfrac12e^5,\quad h=4,\quad f=\tfrac12e^5-4.
+\]
+Starting with $\bar f=1$, reverse propagation gives
+\[
+\bar d=1,\qquad \bar h=-1,\qquad
+\bar a=\bar d\,c=e^5,\qquad
+\bar c=\bar d\,a=\tfrac12,\qquad
+\bar b=\bar c\,e^b=\tfrac12e^5.
+\]
+The input adjoints are obtained by summing over all outgoing paths:
+\begin{align*}
+\bar x_1&=\bar a\frac{1}{x_2}=\frac{e^5}{2},\\
+\bar x_2&=\bar a\left(-\frac{x_1}{x_2^2}\right)
+          +\bar b+\bar h(2x_2)
+          =-\frac{e^5}{4}+\frac{e^5}{2}-4
+          =\frac{e^5}{4}-4,\\
+\bar x_3&=\bar b=\frac{e^5}{2}.
+\end{align*}
+Thus,
+\[
+\boxed{\nabla_{\mathbf{x}}f(1,2,3)=
+\begin{pmatrix}e^5/2\\e^5/4-4\\e^5/2\end{pmatrix}
+\approx\begin{pmatrix}74.2066\\33.1033\\74.2066\end{pmatrix}.}
+\]
 
 \end{enumerate}
 
@@ -162,16 +221,64 @@ Before answering the questions, also briefly review the original Adam algorithm 
 \emph{Update:} $\theta_t \gets \theta_{t-1} - \alpha\, g_t$, where $g_t = \nabla_\theta f_t(\theta_{t-1})$. \\
 \emph{Key idea:} Use a random minibatch each step for computational efficiency. \\
 \emph{Problem it solves:} Full-batch gradient descent is slow and redundant; minibatching makes updates cheaper.
-\vspace*{14\baselineskip}
+\par\smallskip
+\textbf{Solution.} All operations below are elementwise, $g_t=\nabla f_t(\theta_{t-1})$,
+and all accumulators start at zero.
+
+\textbf{Momentum:}
+\[
+u_t=\beta u_{t-1}+g_t,\qquad \theta_t=\theta_{t-1}-\alpha u_t.
+\]
+\emph{Key idea:} Accumulate an exponentially decaying history of gradients.
+\emph{Problem it solves:} It reduces oscillation and accelerates progress along directions with consistent gradients.
+
+\textbf{AdaGrad:}
+\[
+s_t=s_{t-1}+g_t^2,\qquad
+\theta_t=\theta_{t-1}-\alpha\frac{g_t}{\sqrt{s_t}+\epsilon}.
+\]
+\emph{Key idea:} Scale each coordinate's update by its accumulated squared gradients.
+\emph{Problem it solves:} It adapts to unequal gradient scales and gives infrequently updated coordinates relatively larger effective learning rates.
+
+\textbf{RMSProp:}
+\[
+s_t=\beta s_{t-1}+(1-\beta)g_t^2,\qquad
+\theta_t=\theta_{t-1}-\alpha\frac{g_t}{\sqrt{s_t}+\epsilon}.
+\]
+\emph{Key idea:} Use an exponential moving average of squared gradients to adapt each coordinate's step size.
+\emph{Problem it solves:} It avoids AdaGrad's continually growing accumulator and the resulting continual decay of effective learning rates.
+
 
   \item \textbf{Handling Large Gradients.} What happens when gradients are very large in plain gradient descent, and how does Adam’s update rule address this issue?
-  \vspace*{5\baselineskip}
+  \par\smallskip
+\textbf{Solution.} Large gradients in plain gradient descent can cause oversized updates,
+overshooting, oscillation, or divergence.
+Adam smooths gradients with momentum and divides the update by
+$\sqrt{\hat v_t}+\epsilon$, reducing the effective learning rate in coordinates
+with large recent squared gradients; this mitigates oversized steps but does not guarantee stability.
+
 
   \item \textbf{Introducing AdamW.} How does AdamW decouple weight decay from the gradient update? Why does this help generalization?
-  \vspace*{5\baselineskip}
+  \par\smallskip
+\textbf{Solution.} AdamW computes Adam's moments using only the loss gradient and applies
+weight decay separately:
+\[
+\theta_t=(1-\alpha\lambda)\theta_{t-1}
+-\alpha\frac{\hat m_t}{\sqrt{\hat v_t}+\epsilon}.
+\]
+The decay is not accumulated in the moments or rescaled by the adaptive denominator,
+so it provides more predictable regularization that can discourage large weights and reduce overfitting.
+Here $\lambda$ follows the learning-rate-scaled convention in Q8.
+
 
   \item \textbf{AdamW Weight Decoupling.} How does decoupling weight decay affect hyperparameter sensitivity?
-  \vspace*{6\baselineskip}
+  \par\smallskip
+\textbf{Solution.} Decoupling prevents the strength of weight decay from depending on
+Adam's gradient history and coordinatewise scaling, making the decay coefficient
+easier to tune separately from the adaptive update.
+This reduces hyperparameter interactions, but does not eliminate them: under
+the convention in Q8, the per-step shrinkage still depends on $\alpha\lambda$.
+
 
   \item \textbf{Tracing Adam’s Origins (Line Mapping).}   
     As seen in lecture, Adam builds on ideas from several earlier optimizers. Now let's explore exactly how these ideas are used in Adam. Below are the key lines (7–11) from the Adam algorithm.  
@@ -196,8 +303,18 @@ Before answering the questions, also briefly review the original Adam algorithm 
         \State $\theta_t \gets \theta_{t-1} - \alpha \cdot \hat{m}_t / (\sqrt{\hat{v}_t} + \epsilon)$ \Comment{Line 11}
     \end{algorithmic}
     \end{algorithm}
-    \vspace*{12\baselineskip}
+    \par\smallskip
+\textbf{Solution.}
+\begin{itemize}[leftmargin=1.4em]
+\item Line 7: \textbf{Momentum}; it accumulates an exponential moving average of gradients.
+\item Line 8: \textbf{Adaptive Scaling (RMSProp/AdaGrad)}; the moving average of squared gradients supplies coordinatewise scale estimates.
+\item Line 9: \textbf{Newly Introduced by Adam} (among the compared methods); it corrects the first moment's initial bias toward zero.
+\item Line 10: \textbf{Newly Introduced by Adam} (among the compared methods); it corrects the second moment's initial bias toward zero.
+\item Line 11: \textbf{Combination}; it combines the momentum numerator with adaptive scaling by the root second moment.
+\end{itemize}
 
+
+\newpage
 \item \textbf{Step 1 Gradient: Adam and AdamW updates.}
 Consider the scalar objective
 \[
@@ -219,14 +336,41 @@ Compute all quantities for $t=1$.
         \theta_1^{\text{Adam}} - \alpha \lambda \theta_0$ (step 1 update of AdamW).
 \end{enumerate}
 
+\par\smallskip
+\textbf{Solution.} Evaluate the first gradient at $\theta_0$ (in general,
+$g_t=2\theta_{t-1}$ for an update indexed by $t$).
+\begin{align*}
+\text{(a)}\quad &g_1=20,\quad m_1=0.1(20)=2,\quad v_1=0.01(20^2)=4.\\
+\text{(b)}\quad &\hat m_1=2/(1-0.9)=20,\quad \hat v_1=4/(1-0.99)=400.\\
+\text{(c)}\quad &\theta_1^{\mathrm{Adam}}=10-0.1\frac{20}{20+10^{-8}}\approx9.9.\\
+\text{(d)}\quad &\theta_1^{\mathrm{AdamW}}=\theta_1^{\mathrm{Adam}}-0.1(0.01)(10)\approx9.89.
+\end{align*}
+
 \item \textbf{Step 2 Gradient: Adam continuation ($\beta_2 = 0.99$).}
 Compute the second update step for Adam (you don't have to compute for AdamW). In other words, compute $\theta_2^{\text{Adam}}$.
-\vspace*{8\baselineskip}
+\par\smallskip
+\textbf{Solution.} Continuing from Adam's $\theta_1\approx9.9$ (not AdamW's value),
+\begin{align*}
+g_2&=2\theta_1\approx19.8,\\
+m_2&=0.9(2)+0.1(19.8)=3.78,\\
+v_2&=0.99(4)+0.01(19.8^2)=7.8804,\\
+\hat m_2&=\frac{3.78}{1-0.9^2}\approx19.894737,\qquad
+\hat v_2=\frac{7.8804}{1-0.99^2}=396,\\
+\theta_2^{\mathrm{Adam}}&=9.9-0.1\frac{19.894737}{\sqrt{396}+10^{-8}}
+\approx\boxed{9.800025}.
+\end{align*}
+
 
 \item \textbf{Conceptual reflection.}
 Keep the baseline at $\beta_2 = 0.99$. Now imagine we set $\beta_2 = 0.5$ (all else unchanged).
 Without redoing the full calculation, explain qualitatively what changes at $t=1$ and $t\ge2$,
-and how this would affect stability vs.\ responsiveness.\\[0.5\baselineskip]
+and how this would affect stability vs.\ responsiveness.
+
+\par\smallskip
+\textbf{Solution.} At $t=1$, $v_1$ increases when $\beta_2$ decreases, but
+$\hat v_1=(1-\beta_2)g_1^2/(1-\beta_2)=g_1^2$, so the corrected moment and parameter update are unchanged.
+For $t\ge2$, $\beta_2=0.5$ gives recent squared gradients more weight; in this example the gradients decrease, so the second-step denominator is slightly smaller and the update is slightly larger.
+The estimate responds faster to changes but smooths noise less, so step sizes can fluctuate more than with $\beta_2=0.99$.
 
 \end{enumerate}
 
