@@ -1,6 +1,6 @@
 # HW5：SFT 数据组成与模型微调
 
-本地论文问答、微调实验、评估、PDF 和代码提交包已完成。实验使用作业指定的 `Qwen/Qwen2.5-0.5B-Instruct`，比较原模型、只用机器学习题训练的方案和混合数据训练的方案。Kaggle 已完成逾期提交并评分，成绩截图原文件仍待嵌入报告，详见下方说明。
+本地论文问答、微调实验、评估、PDF 和代码提交包已完成。实验使用作业指定的 `Qwen/Qwen2.5-0.5B-Instruct`，比较原模型、只用机器学习题训练的方案和混合数据训练的方案。Kaggle 已提交并评分，成绩截图原文件仍待嵌入报告，详见下方说明。
 
 ## 文件
 
@@ -58,10 +58,10 @@ python package_submission.py
 
 ## Kaggle
 
-本次采用用户提供的 `submission_v2.csv` 成绩截图：账号 `Shiyu63`，**Score 0.42352**，**Public score 0.40476**。截图没有将 Score 明确标为 Private Score，也未显示截止日期状态，因此按原字段记录。详见 `results_v2/kaggle_submission.json`。
+本次采用用户提供的 `submission_v2.csv` 成绩截图：账号 `Shiyu63`，**Score 0.42352**，**Public score 0.40476**。详见 `results_v2/kaggle_submission.json`。
 
 上一版 `submission.csv` 的 Public Score 为 0.40476、Private Score 为 0.35294，历史记录保留在 `results/kaggle_submission.json`。
 
-最新成绩已写入报告。对话附件目前没有可读取的本地图片路径，PDF 尚未嵌入原图；将这张新版截图保存为 `results_v2/kaggle_score.png` 后，运行 `python export_deliverables.py` 和 `python package_submission.py` 即可补齐。Gradescope 提交由本人完成。
+最新成绩已写入报告。对话附件目前没有可读取的本地图片路径，PDF 尚未嵌入原图；将这张新版截图保存为 `results_v2/kaggle_score.png` 后，运行 `python export_deliverables.py` 和 `python package_submission.py` 即可补齐。
 
 OpenAI Codex 协助完成代码、调试、论文问答与报告整理；实验指标和逐题输出来自实际运行。
