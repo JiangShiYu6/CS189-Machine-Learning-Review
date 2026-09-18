@@ -169,7 +169,7 @@ def export_report():
       'this comparison changes both data coverage and training budget, so it cannot isolate their causal effects.')
     story.extend(markdown_blocks('## 2. Narrow-data attempt\n\n'+experiment,True))
     story.append(Paragraph('Public accuracy is descriptive: the 25-question public set overlaps the hidden CSV. '
-                           'No public or hidden questions were trained on, and hidden accuracy is unavailable. '
+                           'No public or hidden questions were trained on. Kaggle scores are reported on page 2. '
                            'The held-out MMLU results are local split evaluations, not official benchmark scores.',STYLES['BodySmall']))
     story.append(PageBreak())
     story.append(Paragraph('3-4. Real changes on non-CS189 inputs',STYLES['Heading2']))
@@ -194,8 +194,18 @@ def export_report():
             explanation=explanations[category][i-1]
             story.append(Paragraph(explanation,STYLES['BodySmall']))
     story.append(Paragraph('Kaggle status',STYLES['Heading3']))
-    story.append(Paragraph('The 169-row submission.csv is generated and checked. Kaggle username and score screenshot '
-                           'are pending authenticated submission; no leaderboard score is claimed.',STYLES['BodySmall']))
+    story.append(Paragraph('Kaggle account shown by the user: Shiyu63. The user-provided submission screenshot '
+                           'shows Public Score 0.40476 and Private Score 0.35294, with status '
+                           'Complete (after deadline). These are scored late-submission results, '
+                           'not confirmation of eligibility for course credit.',STYLES['BodySmall']))
+    screenshot=HERE/'results/kaggle_score.png'
+    if screenshot.exists():
+        pic=Image(str(screenshot));ratio=min(528/pic.imageWidth,110/pic.imageHeight)
+        pic.drawWidth=pic.imageWidth*ratio;pic.drawHeight=pic.imageHeight*ratio
+        story.append(pic)
+    else:
+        story.append(Paragraph('The score was transcribed from the original screenshot in the conversation. '
+                               'The screenshot image file still needs to be embedded in this PDF.',STYLES['BodySmall']))
     story.append(Paragraph('Sources and acknowledgement',STYLES['Heading3']))
     refs='[1] <link href="https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct">Qwen model card</link>. '
     refs+='[2] <link href="https://huggingface.co/datasets/cais/mmlu">cais/mmlu</link>. '

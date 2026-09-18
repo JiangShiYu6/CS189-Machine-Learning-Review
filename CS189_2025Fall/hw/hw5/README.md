@@ -1,6 +1,6 @@
 # HW5：SFT 数据组成与模型微调
 
-本地论文问答、微调实验、评估、PDF 和代码提交包已完成。实验使用作业指定的 `Qwen/Qwen2.5-0.5B-Instruct`，比较原模型、只用机器学习题训练的方案和混合数据训练的方案。Kaggle 线上提交与成绩截图仍待完成，详见下方说明。
+本地论文问答、微调实验、评估、PDF 和代码提交包已完成。实验使用作业指定的 `Qwen/Qwen2.5-0.5B-Instruct`，比较原模型、只用机器学习题训练的方案和混合数据训练的方案。Kaggle 已完成逾期提交并评分，成绩截图原文件仍待嵌入报告，详见下方说明。
 
 ## 文件
 
@@ -56,6 +56,8 @@ python package_submission.py
 
 ## Kaggle
 
-本地预测文件与 GitHub 上传不等于 Kaggle 提交。当前缺少可用的 Kaggle 登录渠道，用户名、线上成绩和成绩截图仍待补充；报告中明确标注此状态，没有编造成绩。可将 `submission.csv` 上传至[课程竞赛](https://www.kaggle.com/t/11c8ffdc967fe3f27755cde6fb5810e8)，再把真实截图加入 PDF。Gradescope 提交由本人完成。
+用户提供的 Kaggle 截图显示账号为 `Shiyu63`，`submission.csv` 已评分：Public Score **0.40476**，Private Score **0.35294**。状态为 **Complete (after deadline)**，属于逾期提交；这不代表课程一定接受该成绩。记录见 `results/kaggle_submission.json`。
+
+成绩已写入报告。目前对话中的截图没有可读取的本地图片文件，因此 PDF 尚未嵌入原图。将成绩截图保存为 `results/kaggle_score.png` 后，运行 `python export_deliverables.py` 和 `python package_submission.py` 即可补齐 PDF 与提交包。Gradescope 提交由本人完成。
 
 OpenAI Codex 协助完成代码、调试、论文问答与报告整理；实验指标和逐题输出来自实际运行。

@@ -39,7 +39,7 @@ Lecture 目录收录了 Fall 2025 发布的 24 份讲义 PDF，覆盖 Lecture 01
 | HW2 | 已完成 | [运行说明与验证记录](CS189_2025Fall/hw/hw2/README.md) · [书面题 PDF](CS189_2025Fall/hw/hw2/written.pdf) · [论文问答](CS189_2025Fall/hw/hw2/hw2_paper_answer.md) |
 | HW3 | 已完成 | [书面答案](CS189_2025Fall/hw/hw3/hw3_written.pdf) · [Notebook](CS189_2025Fall/hw/hw3/hw3.ipynb) · [验证记录](CS189_2025Fall/hw/hw3/README.md) |
 | HW4 | 论文问答与三个编程 Notebook 已完成 | [论文问答 PDF](CS189_2025Fall/hw/hw4/hw4_paper_question_student.pdf) · [运行结果与说明](CS189_2025Fall/hw/hw4/README.md) |
-| HW5 | 本地问答、实验与交付文件已完成；Kaggle 成绩待提交 | [论文答案](CS189_2025Fall/hw/hw5/hw5_paper_answers.pdf) · [实验报告](CS189_2025Fall/hw/hw5/hw5_writeup.pdf) · [运行结果与说明](CS189_2025Fall/hw/hw5/README.md) |
+| HW5 | 本地任务已完成；Kaggle 已逾期评分，截图待嵌入 | [论文答案](CS189_2025Fall/hw/hw5/hw5_paper_answers.pdf) · [实验报告](CS189_2025Fall/hw/hw5/hw5_writeup.pdf) · [运行结果与说明](CS189_2025Fall/hw/hw5/README.md) |
 
 HW2 已补齐书面题、论文问答及全部三个 Notebook（含 `legacy` 旧版），并保留实际数据运行结果。Online K-means 的“每次更新总损失不增加”命题按原题条件不成立，书面答案提供反例，并证明当前样本损失不增加这一较弱结论。
 
