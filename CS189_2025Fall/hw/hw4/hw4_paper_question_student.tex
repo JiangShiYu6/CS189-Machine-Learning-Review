@@ -1,7 +1,11 @@
 \documentclass[11pt]{article}
 
 % ---------- Packages ----------
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
+\usepackage{graphicx}
+\usepackage{needspace}
+\usepackage{etoolbox}
+\pretocmd{\subsection}{\Needspace{11\baselineskip}}{}{}
 \usepackage{amsmath,amssymb,amsfonts,amsthm}
 \usepackage{enumitem}
 \usepackage{geometry}
@@ -25,6 +29,7 @@
 \lhead{\textbf{CS 189/289A}}
 \rhead{Fall 2025}
 \cfoot{\thepage}
+\setlength{\headheight}{14pt}
 
 % ---------- Helpful Macros ----------
 \newcommand{\RR}{\mathbb{R}}
@@ -38,6 +43,7 @@
 \setlength{\qlabelwidth}{3em} % width reserved for "Qxx." (adjust if needed)
 
 \newcommand{\question}{%
+  \Needspace{7\baselineskip}%
   \refstepcounter{qcounter}%
   \par\noindent
   \makebox[\qlabelwidth][l]{\textbf{Q\arabic{qcounter}.}}%
@@ -91,7 +97,7 @@ Some helpful resources compiled by course staff for understanding the Attention 
 
 \section{ResNets}
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.45\textwidth]{resnet_figure2.png}
     \parbox{0.6\textwidth} {
@@ -99,7 +105,7 @@ Some helpful resources compiled by course staff for understanding the Attention 
         Figure 2 from the Deep Residual Learning for Image Recognition: "Residual learning: a building block."
         \end{center}
     }
-    \label{fig:resnet_figure2}
+    \label{fig:resnet_block}
 \end{figure}
 
 \subsection*{Problem}
@@ -107,7 +113,7 @@ Some helpful resources compiled by course staff for understanding the Attention 
   \question (\texttt{1 Pt.}) In less than 5 words, describe the kind of tasks was ResNet designed for. \textit{[Sections: 1 - Introduction]} 
   
   \begin{solution}
-  Your solution here...
+  Image classification.
   \end{solution}
 
   \question (\texttt{1 Pt.}) What problem did the authors of the ResNet paper aim to solve? \textit{[Sections: Abstract, 1 - Introduction]} 
@@ -115,7 +121,7 @@ Some helpful resources compiled by course staff for understanding the Attention 
   Hint: What kind of problems did researchers/engineers notice happening with deeper neural networks? What differentiates \textbf{degradation} from \textbf{overfitting}?
   
   \begin{solution}
-  Your solution here...
+  Degradation: adding layers raised training error because optimization became harder. Overfitting instead concerns poor generalization despite fitting the training data.
   \end{solution}
   
 \subsection*{Current works}
@@ -123,7 +129,7 @@ Some helpful resources compiled by course staff for understanding the Attention 
   \question (\texttt{2 Pts.})  How might you construct a deeper counterpart of a neural network that produces the exact same outputs as a shallower network? Why doesn't this work in practice, i.e. why does \textbf{degradation} occur in deeper neural networks? \textit{[Sections: 1 - Introduction, 2 - Related Work]}
 
   \begin{solution}
-  Your solution here...
+  Copy the shallow network's parameters and insert identity layers. This preserves outputs, but ordinary training may fail to discover such a solution efficiently.
   \end{solution}
 
 \subsection*{Proposed Solution}
@@ -131,7 +137,7 @@ Some helpful resources compiled by course staff for understanding the Attention 
   \question (\texttt{1 Pt.})  The ResNet authors proposed building layers that can learn the residual function $F(x) + x$ instead of directly learning $H(x)$. Why might we want to learn the function $F(x) + x$ if it is equivalent to $H(x)$? How does learning $F(x)$ help solve the degradation problem? \textit{[Section: 3.1 - Residual Learning]}
   
   \begin{solution}
-  Your solution here...
+  Learn $F(x)=H(x)-x$, then output $F(x)+x$. Near identity, learning a small residual is easier than fitting identity with stacked nonlinear layers.
   \end{solution}
   
 \subsection*{Method Details}
@@ -140,19 +146,19 @@ Some helpful resources compiled by course staff for understanding the Attention 
     \question (\texttt{2 Pts.}) What are two workarounds if your original input $x$ and the output of your sublayer $F(x)$ don't have equal dimensions? \textit{[Section: 3.3 - Network Architectures - Residual Network]}
     
   \begin{solution}
-  Your solution here...
+  Use parameter-free zero-padding for extra channels, or a learned $1\times1$ projection. When spatial resolution decreases, downsample the shortcut with the corresponding stride.
   \end{solution}
   
     \question (\texttt{2 Pts.}) Explain the 3 options for how residual/shortcut connections might be implemented. and compare their parameter counts (relative comparisons---which has more vs. less---are okay). Based on the parameter count comparisons, briefly discuss how the 3 different residual connection implementations might affect the model's memory requirements or training time. \textit{[Section: 4 - Experiments - Identity vs. Projection Shortcuts]}
   \begin{solution}
-  Your solution here...
+  (A) Identity shortcuts with zero-padding add no learned parameters; (B) projections only at dimension changes add some; (C) projections everywhere add the most. For the same backbone, parameter storage and projection computation generally increase from A to B to C, increasing training memory and time.
   \end{solution}
 
 \subsection*{Key Insight \& Contributions}
   \question (\texttt{1 Pt.})  What benefits did the authors notice with residual networks? What empirical proof did the authors provide to show that ResNet architectures didn't suffer from the degradation problem? \textit{[Sections: Abstract, 4 - Experiments, Figure 4, Table 2]}
   
   \begin{solution}
-  Your solution here...
+  Residual networks converge more easily and benefit from depth. Figure~4 shows lower training error for ResNet-34 than ResNet-18; Table~2 shows validation error falling from $27.88\%$ to $25.03\%$, while deeper plain networks worsen.
   \end{solution}
 
 % ------------------------------------------------------------
@@ -167,7 +173,7 @@ A helpful preface:
 
 \end{enumerate}
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.45\textwidth]{transformer_architecture.png}
     \parbox{0.6\textwidth} {
@@ -175,7 +181,7 @@ A helpful preface:
         Figure 1 from Attention Is All You Need: "The Transformer - model architecture."
     \end{center}
     }
-    \label{fig:resnet_figure2}
+    \label{fig:transformer_architecture}
 \end{figure}
 
 \subsection*{Problem}
@@ -183,20 +189,20 @@ A helpful preface:
   \question (\texttt{1 Pt.})  In a short sentence, What task is the paper "Attention Is All You Need" trying to solve? \textit{[Section: 1- Introduction]}
   
   \begin{solution}
-  Your solution here...
+  The paper addresses sequence-to-sequence modeling, especially machine translation.
   \end{solution}
 
   \question (\texttt{1 Pt.})  What are the jobs of the encoder and decoder? \textit{[Section: 3 - Model Architecture]}  
 
   \begin{solution}
-  Your solution here...
+  The encoder maps the source sequence to contextual representations. The decoder uses those representations and the preceding output tokens to predict the next token.
   \end{solution}
   
 \subsection*{Metrics}
   \question (\texttt{2 Pts.})  Two important metrics that the authors highlight in the paper are BLEU scores and perplexity. Describe what BLEU score and perplexity measure, and what their limitations are. Feel free to use some outside research! \textit{[Sections: Abstract, Table 3]}
 
   \begin{solution}
-  Your solution here...
+  BLEU measures clipped $n$-gram agreement with reference translations, with a brevity penalty; higher is better, but valid paraphrases can score poorly and word overlap does not reliably establish meaning or correctness. Perplexity is $\exp[-N^{-1}\sum_{t=1}^{N}\log p(y_t\mid y_{<t},x)]$, so lower values indicate higher probability assigned to the reference tokens. It depends on tokenization and evaluation data, making unmatched comparisons misleading, and does not directly measure generated-text quality.\footnote{BLEU: \href{https://aclanthology.org/P02-1040/}{Papineni et al. (2002)}.}
   \end{solution}
 
 \subsection*{Current Works}
@@ -204,10 +210,10 @@ A helpful preface:
   \question (\texttt{1 Pt.}) What are some challenges that existing architectures face? Describe the shortcomings of both recurrent neural networks (RNNs) and sequential convolutional neural networks. \textit{[Sections: 1 - Introduction, 2 - Background]}  
 
   \begin{solution}
-  Your solution here...
+  RNN states depend on preceding states, restricting parallelism within a sequence and slowing long-sequence training. Convolutional sequence models process positions in parallel, but linking distant positions requires multiple layers, making long-range dependencies harder to learn.
   \end{solution}
   
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.7\textwidth]{attention.png}
     \parbox{1.0\textwidth} {
@@ -216,7 +222,7 @@ A helpful preface:
 attention layers running in parallel."
     \end{center}
     }
-    \label{fig:resnet_figure2}
+    \label{fig:attention}
 \end{figure}
 
 
@@ -224,12 +230,7 @@ attention layers running in parallel."
   \question (\texttt{1 Pt.})  In a short sentence, describe what "attention" is in your own words. This doesn't have to be within the context of machine learning, but feel free to start also thinking about how the idea of attention might transfer over to what the transformer architecture tries to do. \textit{[Section: your mind]}  
   
   \begin{solution}
-  Your solution here...
-  \end{solution}
-
-  
-  \begin{solution}
-  Your solution here...
+  Attention means giving more weight to information that is relevant to the current task.
   \end{solution}
   
 \subsection{Method Details}
@@ -237,24 +238,30 @@ attention layers running in parallel."
   \question (\texttt{1 Pt.})  What is the purpose of masking during decoder self-attention? \textit{[Sections: 3.1 - Encoder and Decoder Stacks, 3.2.3 - Applications of Attention in our Model]}
 
   \begin{solution}
-  Your solution here...
+  A causal mask blocks attention to future positions, so each prediction uses only the permitted preceding target tokens. Together with shifted decoder inputs, it prevents target leakage during parallel training.
   \end{solution}
   
-  \question (\texttt{2 Pts.})  Why does the Transformer paper scale $Q K^T$ by $\frac{1}{\sqrt d_k}$?
+  \question (\texttt{2 Pts.})  Why does the Transformer paper scale $Q K^T$ by $\frac{1}{\sqrt{d_k}}$?
   \textit{[Section: 3.2.1 - Scaled Dot-Product Attention]}
   
   Hint: Imagine we sum up I.I.D. random variables where $x_i \sim \mathcal{N}(0, 1)$. What is the variance of this sum?
   
   \begin{solution}
-  Your solution here...
+  For mutually independent, zero-mean, unit-variance components, each product $q_i k_i$ has variance 1, hence
+\[
+\operatorname{Var}(q^\top k)=d_k,\qquad
+\operatorname{Var}\!\left(\frac{q^\top k}{\sqrt{d_k}}\right)=1.
+\]
+The scaling keeps attention scores from growing with dimension, reducing softmax saturation and the resulting small gradients.
   \end{solution}
 
   \question (\texttt{1 Pt.}) What are 2 benefits of multi-headed attention? \textit{[Section: 3.2.2 - Multi-Head Attention]}
   
   \begin{solution}
-  Your solution here...
+  Different heads can attend to different positions and learned representation subspaces simultaneously. Keeping their weighted summaries separate until concatenation preserves distinctions that a single weighted average can mix together.
   \end{solution}
 
+  \Needspace{17\baselineskip}
   \question (\texttt{2 Pts.})  Where do the query, key, and value vectors come from in the following parts of a transformer, and why? \textit{[Section: 3.2.3 - Applications of Attention in our Model]}
   
   \begin{enumerate}[label=(\alph*)]
@@ -264,26 +271,26 @@ attention layers running in parallel."
 \end{enumerate}
 
   \begin{solution}
-  Your solution here...
+  In encoder self-attention, $Q,K,V$ are separate learned projections of the current encoder layer's input, allowing source positions to exchange information. In decoder self-attention, all three come from the current decoder layer's input, with a causal mask restricting target-context access. In cross-attention, $Q$ comes from the preceding decoder sublayer and $K,V$ from the encoder's final output, so the decoder can retrieve source information relevant to its next prediction.
   \end{solution}
   
   \question (\texttt{2 Pts.})  Explain the differences between what the transformer decoder receives as input and what it outputs during training vs. inference. \textit{[Sections: 3 - Model Architecture, 5.1 - Training Data and Batching]}
 
   \begin{solution}
-  Your solution here...
+  During training, the decoder receives the ground-truth target sequence shifted right and predicts next-token distributions at all positions in parallel under a causal mask (teacher forcing). During inference, it begins with a start token, receives its own generated prefix, and selects one new token per step until an end token or length limit. In both cases it also attends to the encoder's source representations.
   \end{solution}
 
   \question (\texttt{2 Pts.})  Why does the standard input to a transformer model (before adding positional encodings) not contain any information about the order of tokens in a sequence? How do positional encodings help the model understand token order? \textit{[Section: 3.5 - Positional Encoding]}
 
   \begin{solution}
-  Your solution here...
+  Token embeddings encode identity rather than position, and unmasked self-attention alone is permutation-equivariant: rearranging inputs rearranges outputs without supplying an order signal. Adding a position-dependent vector to each embedding lets attention use absolute positions and learn relative positional relationships.
   \end{solution}
   
 \subsection*{Key Insight / contributions}
 
   \question (\texttt{2 Pts.})  What advantages does the self-attention mechanism have over recurrent layers and convolutional layers in the context of sequence modeling? \textit{[Section: 4 - Why Self-Attention]}
   \begin{solution}
-  Your solution here...
+  Self-attention processes positions in parallel, whereas recurrent layers require sequential steps. It connects any two positions within one layer, shortening information paths compared with recurrence and local convolutions and helping model long-range dependencies. Its per-layer cost $O(n^2d)$ is lower than a recurrent layer's $O(nd^2)$ when $n<d$, though quadratic dependence on sequence length makes long inputs expensive.
   \end{solution}
 
 \subsection*{Future Work}
@@ -291,13 +298,13 @@ attention layers running in parallel."
   \question (\texttt{2 Pts.})  As mentioned earlier in the assignment, the transformer architecture has rocked the machine learning world in countless ways! One application has been in computer vision, where Vision Transformers have matched and even beat state-of-the-art convolutional neural networks in image-processing tasks. How might you adapt transformers to process images? Think about how you might create "tokens" from images. If you don't know where to start, feel free to skim follow-up works to this paper which look into this. 
   
   \begin{solution}
-  Your solution here...
+  Divide the image into fixed-size patches, flatten each patch, and linearly project it to a token embedding; for example, a $224\times224$ image gives 196 patches of size $16\times16$. Add positional embeddings and process the patch sequence with a Transformer encoder. A learned classification token can collect image information through attention, and its final representation feeds a classification head.\footnote{Vision Transformer: \href{https://arxiv.org/abs/2010.11929}{Dosovitskiy et al., An Image is Worth 16x16 Words}.}
   \end{solution}
   
   \question (\texttt{2 Pts.})  Suppose you have a ResNet and a Vision Transformer, both trained on ImageNet with standard preprocessing (e.g. image resizing, pixel standardization). Now, you are given a new image of size $1024 \times 512$. How would you process this image for each model? What are the key differences in how ResNets and Vision Transformers handle input image sizes?
 
   \begin{solution}
-  Your solution here...
+  For either model, first use the checkpoint's expected preprocessing, such as aspect-preserving resizing and a $224\times224$ center crop followed by its channel normalization. To retain $1024\times512$, a standard ResNet's convolutions and adaptive global pooling can accommodate the changed feature-map size, while a standard ViT needs dimensions compatible with its patch size and interpolation of its learned patch-position grid. With $16\times16$ patches, the grid grows from $14\times14$ to $64\times32$ (196 to 2048 tokens, excluding any classification token), substantially increasing attention cost; the classification-token position is kept separate, and accuracy at the new resolution is not guaranteed.
   \end{solution}
   
 % ============================================================
@@ -307,5 +314,9 @@ attention layers running in parallel."
 % \begin{itemize}
 %     \item 
 % \end{itemize}
+
+\section*{Acknowledgement}
+OpenAI Codex assisted with explanations, drafting, and checking the answers against the cited papers.
+
 
 \end{document}

@@ -15,3 +15,6 @@ __pycache__/
 CS189_2025Fall/hw/hw2/clustered_prompts*.csv
 CS189_2025Fall/hw/hw3/demo_graph.typ
 CS189_2025Fall/hw/hw3/demo_graph.pdf
+CS189_2025Fall/hw/hw4/data/
+CS189_2025Fall/hw/hw4/models/
+CS189_2025Fall/hw/hw4/classifier.joblib
