@@ -1,0 +1,62 @@
+{
+  "forgetting": [
+    {
+      "id": "mmlu_elementary_mathematics_validation_1",
+      "question": "Solve for y. y \u2013 2 + 3y = 10",
+      "choices": [
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "answer": "B",
+      "base_output": "\\boxed{B}",
+      "final_output": "\\boxed{C}",
+      "source": "cais/mmlu:elementary_mathematics:validation"
+    },
+    {
+      "id": "mmlu_elementary_mathematics_validation_28",
+      "question": "Solve the equation 29 = x \u2212 17.",
+      "choices": [
+        "12",
+        "\u221212",
+        "\u221246",
+        "46"
+      ],
+      "answer": "D",
+      "base_output": "\\boxed{D}",
+      "final_output": "\\boxed{C}",
+      "source": "cais/mmlu:elementary_mathematics:validation"
+    }
+  ],
+  "gains": [
+    {
+      "id": "mmlu_elementary_mathematics_validation_30",
+      "question": "If 50% of a number is 20, what is 75% of the number?",
+      "choices": [
+        "8",
+        "15",
+        "30",
+        "45"
+      ],
+      "answer": "C",
+      "base_output": "\\boxed{B}",
+      "final_output": "\\boxed{C}",
+      "source": "cais/mmlu:elementary_mathematics:validation"
+    },
+    {
+      "id": "mmlu_elementary_mathematics_validation_27",
+      "question": "The expression \u2013105 + (\u201314) + 34 simplifies to which of the following?",
+      "choices": [
+        "\u201357",
+        "\u201375",
+        "\u201385",
+        "143"
+      ],
+      "answer": "C",
+      "base_output": "\\boxed{A}",
+      "final_output": "\\boxed{C}",
+      "source": "cais/mmlu:elementary_mathematics:validation"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "base_evaluation": {
+    "n": 242,
+    "changed_predictions": 0
+  },
+  "narrow_evaluation": {
+    "n": 242,
+    "changed_predictions": 0
+  },
+  "final_evaluation": {
+    "n": 242,
+    "changed_predictions": 0
+  },
+  "final_hidden": {
+    "n": 169,
+    "changed_predictions": 0
+  },
+  "precision": "Explicit CUDA bfloat16 autocast matches Trainer/Accelerate evaluation."
+}

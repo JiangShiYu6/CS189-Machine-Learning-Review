@@ -1,0 +1,53 @@
+{
+  "base": {
+    "cs189": {
+      "correct": 6,
+      "n": 25,
+      "accuracy": 0.24
+    },
+    "general": {
+      "correct": 73,
+      "n": 142,
+      "accuracy": 0.5140845070422535
+    },
+    "specialized": {
+      "correct": 30,
+      "n": 75,
+      "accuracy": 0.4
+    }
+  },
+  "narrow": {
+    "cs189": {
+      "correct": 12,
+      "n": 25,
+      "accuracy": 0.48
+    },
+    "general": {
+      "correct": 71,
+      "n": 142,
+      "accuracy": 0.5
+    },
+    "specialized": {
+      "correct": 26,
+      "n": 75,
+      "accuracy": 0.3466666666666667
+    }
+  },
+  "mixed": {
+    "cs189": {
+      "correct": 10,
+      "n": 25,
+      "accuracy": 0.4
+    },
+    "general": {
+      "correct": 72,
+      "n": 142,
+      "accuracy": 0.5070422535211268
+    },
+    "specialized": {
+      "correct": 28,
+      "n": 75,
+      "accuracy": 0.37333333333333335
+    }
+  }
+}

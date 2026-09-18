@@ -1,0 +1,33 @@
+{
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "revisions": {
+    "model": "7ae557604adf67be50417f59c2c2f167def9a775",
+    "cais/mmlu": "c30699e8356da336a370243923dbaf21066bb9fe"
+  },
+  "seed": 189,
+  "train_count": 907,
+  "validation_count": 217,
+  "public_count": 25,
+  "hidden_count": 169,
+  "excluded_test_overlap": 7,
+  "public_hidden_overlap": 21,
+  "train_counts": {
+    "high_school_statistics": 120,
+    "high_school_geography": 120,
+    "high_school_world_history": 120,
+    "elementary_mathematics": 120,
+    "nutrition": 119,
+    "machine_learning": 108,
+    "college_computer_science": 100,
+    "college_mathematics": 100
+  },
+  "note": "MMLU test split is explicitly training data, as in the starter; dev/validation are held out.",
+  "environment": {
+    "torch": "2.6.0+cu124",
+    "transformers": "4.57.3",
+    "trl": "0.24.0",
+    "peft": "0.17.1",
+    "datasets": "3.6.0"
+  },
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU"
+}
