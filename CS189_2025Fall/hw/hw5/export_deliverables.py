@@ -194,11 +194,13 @@ def export_report():
             explanation=explanations[category][i-1]
             story.append(Paragraph(explanation,STYLES['BodySmall']))
     story.append(Paragraph('Kaggle status',STYLES['Heading3']))
-    story.append(Paragraph('Kaggle account shown by the user: Shiyu63. The user-provided submission screenshot '
-                           'shows Public Score 0.40476 and Private Score 0.35294, with status '
-                           'Complete (after deadline). These are scored late-submission results, '
-                           'not confirmation of eligibility for course credit.',STYLES['BodySmall']))
-    screenshot=HERE/'results/kaggle_score.png'
+    story.append(Paragraph('Latest user-provided screenshot: account Shiyu63, submission_v2.csv. '
+                           'The displayed Score is 0.42352 and Public score is 0.40476. '
+                           'The screenshot does not explicitly label the Score as private or show deadline status. '
+                           'This v2 result uses the selected specialist adapter with cyclic option averaging and '
+                           'explicit token positions; see improvements_v2.md for its experiments. '
+                           'The tables and examples above retain the original experiment results.',STYLES['BodySmall']))
+    screenshot=HERE/'results_v2/kaggle_score.png'
     if screenshot.exists():
         pic=Image(str(screenshot));ratio=min(528/pic.imageWidth,110/pic.imageHeight)
         pic.drawWidth=pic.imageWidth*ratio;pic.drawHeight=pic.imageHeight*ratio

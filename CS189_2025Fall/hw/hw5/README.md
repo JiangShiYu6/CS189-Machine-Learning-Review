@@ -4,7 +4,7 @@
 
 ## 文件
 
-第二轮改进的预测文件为 [submission_v2.csv](submission_v2.csv)，实验比较和复现步骤见 [改进记录](improvements_v2.md)。原来的 `submission.csv`、Notebook 和 PDF 保留第一轮结果，新的脚本与逐题记录位于本目录及 `results_v2/`。重新提交 Kaggle 时请选择带 `_v2` 的文件；新分数以重新提交后的评测为准。
+第二轮改进的预测文件为 [submission_v2.csv](submission_v2.csv)，实验比较和复现步骤见 [改进记录](improvements_v2.md)。原来的 `submission.csv`、Notebook 和 PDF 保留第一轮结果，新的脚本与逐题记录位于本目录及 `results_v2/`。重新提交 Kaggle 时请选择带 `_v2` 的文件；新版截图显示 Score **0.42352**，Public score **0.40476**。
 
 | 文件 | 内容 |
 | --- | --- |
@@ -58,8 +58,10 @@ python package_submission.py
 
 ## Kaggle
 
-用户提供的 Kaggle 截图显示账号为 `Shiyu63`，`submission.csv` 已评分：Public Score **0.40476**，Private Score **0.35294**。状态为 **Complete (after deadline)**，属于逾期提交；这不代表课程一定接受该成绩。记录见 `results/kaggle_submission.json`。
+本次采用用户提供的 `submission_v2.csv` 成绩截图：账号 `Shiyu63`，**Score 0.42352**，**Public score 0.40476**。截图没有将 Score 明确标为 Private Score，也未显示截止日期状态，因此按原字段记录。详见 `results_v2/kaggle_submission.json`。
 
-成绩已写入报告。目前对话中的截图没有可读取的本地图片文件，因此 PDF 尚未嵌入原图。将成绩截图保存为 `results/kaggle_score.png` 后，运行 `python export_deliverables.py` 和 `python package_submission.py` 即可补齐 PDF 与提交包。Gradescope 提交由本人完成。
+上一版 `submission.csv` 的 Public Score 为 0.40476、Private Score 为 0.35294，历史记录保留在 `results/kaggle_submission.json`。
+
+最新成绩已写入报告。对话附件目前没有可读取的本地图片路径，PDF 尚未嵌入原图；将这张新版截图保存为 `results_v2/kaggle_score.png` 后，运行 `python export_deliverables.py` 和 `python package_submission.py` 即可补齐。Gradescope 提交由本人完成。
 
 OpenAI Codex 协助完成代码、调试、论文问答与报告整理；实验指标和逐题输出来自实际运行。

@@ -1,7 +1,7 @@
 # HW5 第二轮改进实验
 
 开发集选中的方案是 `narrow_boxed_r5`，组成部分为 `narrow_boxed_r5`。
-选定方案随后用于新审计集和 `submission_v2.csv`。v2 的 Kaggle 分数尚未知，需重新提交后才能确认线上变化。
+选定方案随后用于新审计集和 `submission_v2.csv`。用户提供的新版 Kaggle 截图显示账号 Shiyu63，Score 为 0.42352，Public score 为 0.40476；按截图字段原样记录，见 results_v2/kaggle_submission.json。
 
 选择规则事先固定为专业准确率 × 0.65 + 通用准确率 × 0.35；通用准确率须至少达到 73/142 − 0.02，且不选择单独的原模型。所有候选都在此前已观察过的 217 道开发题上比较。
 

@@ -1,0 +1,11 @@
+{
+  "account_shown": "Shiyu63",
+  "submission_file": "submission_v2.csv",
+  "score": 0.42352,
+  "public_score": 0.40476,
+  "score_label_in_screenshot": "Score",
+  "evidence": "User-provided recent-submission screenshot in the conversation",
+  "screenshot_file_embedded": false,
+  "expected_screenshot_path": "results_v2/kaggle_score.png",
+  "note": "The screenshot labels 0.42352 as Score; it does not explicitly label it Private Score or show deadline status."
+}
