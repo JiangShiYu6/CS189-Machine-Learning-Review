@@ -43,6 +43,8 @@ HW5 已追加多 agent 研究与第二轮实验：[改进记录](CS189_2025Fall/
 | HW4 | 论文问答与三个编程 Notebook 已完成 | [论文问答 PDF](CS189_2025Fall/hw/hw4/hw4_paper_question_student.pdf) · [运行结果与说明](CS189_2025Fall/hw/hw4/README.md) |
 | HW5 | 已完成；Kaggle 已评分 | [论文答案](CS189_2025Fall/hw/hw5/hw5_paper_answers.pdf) · [实验报告](CS189_2025Fall/hw/hw5/hw5_writeup.pdf) · [运行结果与说明](CS189_2025Fall/hw/hw5/README.md) |
 
+终于把所有作业都做完了，芜湖！从推公式、读论文到写代码、调模型，一路折腾到最后一次 Kaggle 提交，终于可以松口气了。
+
 ## Discussion 资料
 
 每个 Discussion 可能包含下面三类文件：
