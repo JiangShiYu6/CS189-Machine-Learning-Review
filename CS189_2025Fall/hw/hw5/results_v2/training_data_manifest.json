@@ -1,0 +1,55 @@
+{
+  "seed": 189,
+  "original_mmlu_count": 907,
+  "original_mmlu_revisions": {
+    "model": "7ae557604adf67be50417f59c2c2f167def9a775",
+    "cais/mmlu": "c30699e8356da336a370243923dbaf21066bb9fe"
+  },
+  "original_specialized_count": 428,
+  "selected_counts": {
+    "mmlu_specialized": 428,
+    "mmlu_general": 150,
+    "aqua": 400
+  },
+  "train_count": 978,
+  "subject_counts": {
+    "algebra_word_problems": 400,
+    "elementary_mathematics": 42,
+    "college_computer_science": 100,
+    "machine_learning": 108,
+    "high_school_geography": 33,
+    "college_mathematics": 100,
+    "high_school_statistics": 120,
+    "high_school_world_history": 44,
+    "nutrition": 31
+  },
+  "answer_counts": {
+    "C": 233,
+    "B": 202,
+    "A": 223,
+    "D": 244,
+    "E": 76
+  },
+  "aqua": {
+    "repository": "https://github.com/google-deepmind/AQuA",
+    "revision": "26b64ed1f22208c6742f47df547dfd65088ec30d",
+    "url": "https://raw.githubusercontent.com/google-deepmind/AQuA/26b64ed1f22208c6742f47df547dfd65088ec30d/train.json",
+    "download_sha256": "35b70c7cb1660c34d302bb932dfd3656ce3d05e8c982c797767fec31d7d1e0ba",
+    "raw_rows": 97467,
+    "max_question_and_choices_characters": 1800,
+    "rationales_used": false
+  },
+  "heldout_counts": {
+    "original_validation": 217,
+    "audit": 160,
+    "course_rows": 194
+  },
+  "audit_sha256": "51b0a41d3edfef1e17213f85e678744d358a31153a05dffa4af0663573cb21c4",
+  "train_sha256": "388c2f18a475152868369c737ce2e3a82c1ce8df83315e1ac190744e2eaa9fe7",
+  "excluded": {
+    "aqua_duplicate": 3
+  },
+  "decontamination": "NFKC casefold nonword-stripped question exact match against course, original validation, audit; SequenceMatcher(autojunk=False) >= 0.9 against all course questions; exact training deduplication.",
+  "sampling": "Reproduce original MMLU sample; keep clean specialized; seed-189 shuffle general then take 150; continue RNG to shuffle official AQuA train and take first 400 legal clean short records; shuffle combined.",
+  "note": "Evaluation answers are never used. AQuA rationales are never used. Course and audit questions are used solely for overlap exclusion."
+}

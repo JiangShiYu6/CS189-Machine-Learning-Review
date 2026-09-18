@@ -1,0 +1,12 @@
+{
+  "development_set": "Previously observed 217 MMLU dev/validation questions: 75 specialized and 142 general",
+  "audit_set": "Pre-fixed 160 previously unused questions; specialized audit scope is statistics only",
+  "selection_metric": "0.65 * specialized development accuracy + 0.35 * general development accuracy",
+  "general_constraint": "General development accuracy must be at least baseline 73/142 minus 0.02",
+  "sft_requirement": "Final submission must include a fine-tuned adapter; unchanged base is a comparison or ensemble component only",
+  "inference_candidates": "base/final/narrow crossed with boxed/direct/answer/raw and original/cyclic option order",
+  "training_candidates": "New five-choice mixture; label-only LoRA lr=5e-5; epochs 1 and 2; boxed original/cyclic inference",
+  "ensemble_candidates": "Equal probability averages of old base+narrow, base+final, base+narrow+final; also base+best new training checkpoint",
+  "audit_policy": "Select using development results, then evaluate the selected pipeline once on the new audit set against the previous submitted model and unchanged base. Do not retune on audit or course/Kaggle scores.",
+  "submission_policy": "Preserve submission.csv; write submission_v2.csv using selected pipeline. No guarantee of higher Kaggle score."
+}

@@ -4,6 +4,8 @@
 
 ## 文件
 
+第二轮改进的预测文件为 [submission_v2.csv](submission_v2.csv)，实验比较和复现步骤见 [改进记录](improvements_v2.md)。原来的 `submission.csv`、Notebook 和 PDF 保留第一轮结果，新的脚本与逐题记录位于本目录及 `results_v2/`。重新提交 Kaggle 时请选择带 `_v2` 的文件；新分数以重新提交后的评测为准。
+
 | 文件 | 内容 |
 | --- | --- |
 | [论文答案](hw5_paper_answers.pdf) · [可编辑原文](hw5_paper_answers.md) | Q1–Q6，含四个 RQ 和 Q6 的两个子题 |

@@ -32,6 +32,8 @@ Lecture 目录收录了 Fall 2025 发布的 24 份讲义 PDF，覆盖 Lecture 01
 
 ## Homework 进度
 
+HW5 已追加多 agent 研究与第二轮实验：[改进记录](CS189_2025Fall/hw/hw5/improvements_v2.md) · [新版 Kaggle 提交文件](CS189_2025Fall/hw/hw5/submission_v2.csv)。新文件的线上分数待重新提交确认。
+
 | Homework | 状态 | 主要文件 |
 | --- | --- | --- |
 | HW0 | 已完成 | [Notebook](CS189_2025Fall/hw/hw0_demo/hw.ipynb) |

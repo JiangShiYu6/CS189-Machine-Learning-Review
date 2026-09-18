@@ -1,0 +1,38 @@
+{
+  "base": {
+    "general": {
+      "correct": 40,
+      "n": 80,
+      "accuracy": 0.5
+    },
+    "specialized": {
+      "correct": 33,
+      "n": 80,
+      "accuracy": 0.4125
+    }
+  },
+  "previous": {
+    "general": {
+      "correct": 41,
+      "n": 80,
+      "accuracy": 0.5125
+    },
+    "specialized": {
+      "correct": 28,
+      "n": 80,
+      "accuracy": 0.35
+    }
+  },
+  "selected": {
+    "general": {
+      "correct": 44,
+      "n": 80,
+      "accuracy": 0.55
+    },
+    "specialized": {
+      "correct": 28,
+      "n": 80,
+      "accuracy": 0.35
+    }
+  }
+}

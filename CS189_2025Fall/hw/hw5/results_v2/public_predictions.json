@@ -1,0 +1,602 @@
+[
+  {
+    "id":"mcq_1",
+    "question":"Peanut wants to train a model to accurately classify different types of animals from images. After training and testing his model, he observes that the model has high training error and high test error. What can we most confidently say about the bias\/variance characteristics of Peanut\u2019s model?",
+    "choices":[
+      "High bias.",
+      "Low bias.",
+      "High variance.",
+      "Low variance.",
+      "none of the above"
+    ],
+    "answer":"A",
+    "group":"cs189",
+    "source":"course CSV",
+    "prediction":"C",
+    "output":"\\boxed{C}",
+    "correct":false,
+    "choice_probabilities":[
+      0.0255372487,
+      0.0082907304,
+      0.9582781792,
+      0.0044377088,
+      0.0034560908
+    ]
+  },
+  {
+    "id":"mcq_2",
+    "question":"Consider a binary classification data set with 9000 positively labelled examples and 1000 negatively labelled examples. What is the area under the ROC curve (AUC-ROC) of a random classifier that classifies any example as positive with probability \u03c0 and as negative with probability 1 \u2212 \u03c0? Here, the probability \u03c0 is a hyperparameter.",
+    "choices":[
+      "Close to zero.",
+      "Close to 0.1.",
+      "Close to 0.5.",
+      "Close to 0.9.",
+      "Close to one."
+    ],
+    "answer":"C",
+    "group":"cs189",
+    "source":"course CSV",
+    "prediction":"E",
+    "output":"\\boxed{E}",
+    "correct":false,
+    "choice_probabilities":[
+      0.3349492519,
+      0.1121029294,
+      0.1156607209,
+      0.035614403,
+      0.4016727
+    ]
+  },
+  {
+    "id":"mcq_3",
+    "question":"Again, consider a binary classification data set with 9000 positively labelled examples and 1000 negatively labelled examples. What is the precision and the recall of a classifier that always classifies any example as positive?",
+    "choices":[
+      "The precision is 0.1, and the recall is 0.9.",
+      "The precision is 0.9, and the recall is 0.1.",
+      "The precision is 1.0, and the recall is 0.9.",
+      "The precision is 0.9, and the recall is 1.0.",
+      "The precision is 0.1, and the recall is 1.0."
+    ],
+    "answer":"D",
+    "group":"cs189",
+    "source":"course CSV",
+    "prediction":"B",
+    "output":"\\boxed{B}",
+    "correct":false,
+    "choice_probabilities":[
+      0.2053710461,
+      0.3070886642,
+      0.2233898818,
+      0.1700450271,
+      0.0941053789
+    ]
+  },
+  {
+    "id":"mcq_4",
+    "question":"Assume we are given X \u2208 Rn\u00d7d and y \u2208 Rn for n > d. The Ridge regression estimator with regularization coefficient \u03bb estimates the weight vector to be \u0012 2 2\u0013 w\u02c6=argmin y\u2212Xw2+\u03bb\u2225w\u22252 . (1) w The Ridge regression estimator is equivalent to the ordinary least squares estimator on which of the following modified version of X and y? Id denotes the d \u00d7 d identity matrix. 0d denotes the all-zero d-dimensional vector, and 1d denotes the all-one d-dimensional vector.",
+    "choices":[
+      "y\u2032 = [ y; 0d ], X\u2032 = [ X; \u221a\u03bb Id ]",
+      "y\u2032 = [ y; 1d ], X\u2032 = [ X; \u221a\u03bb Id ]",
+      "y\u2032 = [ y; 0d ], X\u2032 = [ X; \u03bb Id ]",
+      "y\u2032 = [ y; 1d ], X\u2032 = [ X; \u03bb Id ]",
+      "none of the above"
+    ],
+    "answer":"A",
+    "group":"cs189",
+    "source":"course CSV",
+    "prediction":"A",
+    "output":"\\boxed{A}",
+    "correct":true,
+    "choice_probabilities":[
+      0.3762111068,
+      0.2585658729,
+      0.1221378669,
+      0.1777095497,
+      0.0653756857
+    ]
+  },
+  {
+    "id":"mcq_5",
+    "question":"Which of the following statements are TRUE regarding positive semi-definite and positive-definite matrices?",
+    "choices":[
+      "\u201cEvery entry of a matrix is non-negative\u201d is a necessary but insufficient condition for a matrix to be positive definite.",
+      "The singular values of a positive semi-definite matrix are the same as its eigenvalues.",
+      "If a matrix A is positive semi-definite, then there exists a matrix B such that BT B = A. (heuristic)",
+      "The covariance matrix of any distribution is positive semi-definite and invertible.",
+      "If the Jacobian of a function is positive semi-definite, then the function is convex."
+    ],
+    "answer":"B",
+    "group":"cs189",
+    "source":"course CSV",
+    "prediction":"C",
+    "output":"\\boxed{C}",
+    "correct":false,
+    "choice_probabilities":[
+      0.0521369502,
+      0.0859592929,
+      0.4365373254,
+      0.2647732794,
+      0.1605931222
+    ]
+  },
+  {
+    "id":"mcq_6",
+    "question":"Which of the following statements are TRUE regarding Lasso and Ridge regression? Let X \u2208 Rn\u00d7d be the data matrix and y \u2208 Rn be the observed labels for the n examples. Let w \u2208 Rd be the weight parameters learned from Lasso or Ridge regression, and let \u03bb be the regularization coefficient.",
+    "choices":[
+      "In the Bayesian MAP interpretation, Lasso regression can be interpreted as linear regression for which the coefficients have Poisson prior distributions.",
+      "In Lasso regression, as the regularization coefficient becomes very large (\u03bb \u2192 \u221e), the learned weights from Lasso regression will be close to zero (w \u2192 0).",
+      "Lasso regression performs both feature expansion and regularization.",
+      "There is no unique solution to Ridge regression whenever X is not full rank.",
+      "none of the above"
+    ],
+    "answer":"B",
+    "group":"cs189",
+    "source":"course CSV",
+    "prediction":"B",
+    "output":"\\boxed{B}",
+    "correct":true,
+    "choice_probabilities":[
+      0.0311491694,
+      0.7089518309,
+      0.0453217737,
+      0.2031181008,
+      0.0114591392
+    ]
+  },
+  {
+    "id":"mcq_7",
+    "question":"If the model resulting from Ridge regression is currently overfitting, what are possible things to reduce overfitting? Select all that apply.",
+    "choices":[
+      "Collect new data to increase the training data size.",
+      "Repeat the current data twice to increase the training data size.",
+      "Increase the \u21131 regularization penalty in the loss function.",
+      "Add new features to the model.",
+      "Add synthetic features from the model."
+    ],
+    "answer":"A",
+    "group":"cs189",
+    "source":"course CSV",
+    "prediction":"C",
+    "output":"\\boxed{C}",
+    "correct":false,
+    "choice_probabilities":[
+      0.012133336,
+      0.0071076743,
+      0.8604543269,
+      0.1007195316,
+      0.0195851512
+    ]
+  },
+  {
+    "id":"mcq_8",
+    "question":"Which of the following statements are TRUE about gradient descent?",
+    "choices":[
+      "After a gradient descent update step, the objective function value at the weight vector is always lower after the update than before.",
+      "There is always a unique steepest descent direction in gradient descent.",
+      "Gradient descent converges to a globally optimal solution for logistic regression under appropriate assumptions.",
+      "Since ReLU is a convex function, a neural network that uses ReLU activations is also a convex function, and therefore gradient descent will converge to a globally optimal solution on neural networks with ReLU activations.",
+      "none of the above"
+    ],
+    "answer":"C",
+    "group":"cs189",
+    "source":"course CSV",
+    "prediction":"B",
+    "output":"\\boxed{B}",
+    "correct":false,
+    "choice_probabilities":[
+      0.1463728547,
+      0.5108914971,
+      0.2734605074,
+      0.0538475625,
+      0.0154275857
+    ]
+  },
+  {
+    "id":"mcq_9",
+    "question":"Which of the following statements are TRUE about cross entropy?",
+    "choices":[
+      "The value of cross-entropy loss is always non-negative.",
+      "Cross-entropy loss is only suitable for binary classification but not for multiclass classification.",
+      "For two discrete probability distributions P and Q, the KL divergence is symmetric, i.e. DKL(P||Q) = DKL(Q||P).",
+      "Minimizing the cross-entropy is equivalent to maximizing the likelihood with re- spect to the model parameters. (heuristic)",
+      "none of the above"
+    ],
+    "answer":"A",
+    "group":"cs189",
+    "source":"course CSV",
+    "prediction":"A",
+    "output":"\\boxed{A}",
+    "correct":true,
+    "choice_probabilities":[
+      0.8554765582,
+      0.017754849,
+      0.0901665613,
+      0.0258331541,
+      0.0107688606
+    ]
+  },
+  {
+    "id":"mcq_10",
+    "question":"Which of the following statements are TRUE about cross validation? In this problem, the final test set is not involved in the cross validation process.",
+    "choices":[
+      "During the k-fold cross validation process, precisely k models are trained on different subsets of the data.",
+      "During the k-fold cross validation process, precisely k \u2212 1 models are trained on different subsets of the data.",
+      "During the k-fold cross validation process, we need to draw k random seeds to shuffle the data precisely k times.",
+      "At the end of the k-fold cross validation process, we choose hyperparameters that minimize the highest validation loss among the different splits.",
+      "none of the above"
+    ],
+    "answer":"A",
+    "group":"cs189",
+    "source":"course CSV",
+    "prediction":"B",
+    "output":"\\boxed{B}",
+    "correct":false,
+    "choice_probabilities":[
+      0.1728531271,
+      0.7746739388,
+      0.0125214383,
+      0.0340368003,
+      0.0059147081
+    ]
+  },
+  {
+    "id":"mcq_11",
+    "question":"Which of the following statements are TRUE about principle component analysis (PCA)? Given n data points of dimension d, X \u2208 Rn\u00d7d, assume that we are performing PCA to reduce the dimension of the data to k where k < d. Which of the following would result in a DIFFERENT PCA basis? Recall that the PCA basis is a set of unit vectors.",
+    "choices":[
+      "Multiplying all columns in X by a factor of two before performing PCA.",
+      "Multiplying the first column in X by a factor of two before performing PCA.",
+      "Replacing the first column of X by the sum of all columns (including the first column). (heuristic)",
+      "Not subtracting the median from X before performing PCA.",
+      "none of the above"
+    ],
+    "answer":"B",
+    "group":"cs189",
+    "source":"course CSV",
+    "prediction":"B",
+    "output":"\\boxed{B}",
+    "correct":true,
+    "choice_probabilities":[
+      0.1350906491,
+      0.6860470176,
+      0.0928463638,
+      0.0819366276,
+      0.0040793843
+    ]
+  },
+  {
+    "id":"mcq_12",
+    "question":"Which of the following statements are TRUE about weight updates in neural networks?",
+    "choices":[
+      "Typically, the weights in all hidden layers are initially all set to zero.",
+      "If using the mean squared error loss, the weight changes in the last layer are proportional to the difference between the model output and the true labels.",
+      "The weight changes in a particular hidden layer are proportional to the input to that weight layer. (heuristic)",
+      "Weight updates are computed in the forward pass of the network.",
+      "none of the above"
+    ],
+    "answer":"B",
+    "group":"cs189",
+    "source":"course CSV",
+    "prediction":"B",
+    "output":"\\boxed{B}",
+    "correct":true,
+    "choice_probabilities":[
+      0.0460648984,
+      0.3856966794,
+      0.1607822925,
+      0.3856966794,
+      0.0217595194
+    ]
+  },
+  {
+    "id":"mcq_13",
+    "question":"Assume a linear model Y = Xw\u2217 + z, where z \u223c N(0, In) and w\u2217 is the true parameter we are trying to estimate. Consider the following objective:\nw\u02c6 = argminw\u2208Rd \u2225Xw \u2212 Y\u2225^2_2 + \u03bb\u2225w\u2225^2_2, \u03bb > 0\nHow will increasing \u03bb in Equation 1 affect the bias of the resulting estimator \u02c6w?",
+    "choices":[
+      "Bias will increase.",
+      "Bias will decrease.",
+      "Bias will remain unchanged.",
+      "Decaf coldbrew latte is delicious",
+      "none of the above"
+    ],
+    "answer":"A",
+    "group":"cs189",
+    "source":"course CSV",
+    "prediction":"A",
+    "output":"\\boxed{A}",
+    "correct":true,
+    "choice_probabilities":[
+      0.9972020388,
+      0.0016988532,
+      0.0001790578,
+      0.0002952164,
+      0.0006249731
+    ]
+  },
+  {
+    "id":"mcq_14",
+    "question":"How will increasing \u03bb in Equation 1 affect the variance of the resulting estimator \u02c6w?",
+    "choices":[
+      "Variance will increase.",
+      "Variance will decrease.",
+      "Variance will remain unchanged.",
+      "Decaf coldbrew latte is delicious",
+      "none of the above"
+    ],
+    "answer":"B",
+    "group":"cs189",
+    "source":"course CSV",
+    "prediction":"A",
+    "output":"\\boxed{A}",
+    "correct":false,
+    "choice_probabilities":[
+      0.9622590542,
+      0.0373108312,
+      0.0001047985,
+      0.0001524808,
+      0.0001727834
+    ]
+  },
+  {
+    "id":"mcq_15",
+    "question":"For this question, X \u2208 R^{n\u00d7d} denotes an input data matrix of rank d, y \u2208 R^n an outcome vector, wridge the ridge regression solution, and wOLS the solution to unregularized linear regression. Select the false statement.",
+    "choices":[
+      "For all X and true linear predictors w\u2217 \u2208 R^d, under the statistical assumption y = Xw\u2217 + z, z \u223c N(0, \u03c3^2 I_n), we have bias(wridge) \u2265 bias(wOLS), where the bias of an estimate w\u02c6 of w\u2217 is defined as bias(w\u02c6 ) = \u2225E[w\u02c6 ] \u2212 w\u2217\u2225_2.",
+      "For all X and y, \u2225wridge\u2225_2 \u2264 \u2225wOLS\u2225_2.",
+      "For all X and y, \u2225wridge\u2225_1 \u2264 \u2225wOLS\u2225_1.",
+      "Decaf coldbrew latte is delicious",
+      "none of the above"
+    ],
+    "answer":"C",
+    "group":"cs189",
+    "source":"course CSV",
+    "prediction":"C",
+    "output":"\\boxed{C}",
+    "correct":true,
+    "choice_probabilities":[
+      0.1050620824,
+      0.2520308197,
+      0.2855883241,
+      0.134902373,
+      0.2224164009
+    ]
+  },
+  {
+    "id":"mcq_16",
+    "question":"Suppose you have a dataset where the label is binary and generated by a fair coin toss and the input features are generated by sampling i.i.d. from a standard Gaussian, independently of the label. Let n denote the number of examples in your dataset and d the number of input features. You perform logistic regression using a random 70\/30 train-validation split. Let Acctrain denote the training accuracy and Accval the validation accuracy. Select the false statement.",
+    "choices":[
+      "As n \u2192 \u221e, Acctrain approaches 50%.",
+      "As n \u2192 \u221e, Accval approaches 50%.",
+      "As d \u2192 \u221e, Acctrain approaches 100%.",
+      "As d \u2192 \u221e, Accval approaches 100%.",
+      "none of the above"
+    ],
+    "answer":"D",
+    "group":"cs189",
+    "source":"course CSV",
+    "prediction":"B",
+    "output":"\\boxed{B}",
+    "correct":false,
+    "choice_probabilities":[
+      0.0788458288,
+      0.6601680517,
+      0.2143251747,
+      0.0372441337,
+      0.0094167907
+    ]
+  },
+  {
+    "id":"mcq_17",
+    "question":"You are walking down Shattuck Ave. when you find a quarter on the ground. You see nothing unusual about this quarter, so you figure it is almost certainly a fair coin, though you realize that manufacturing irregularities in the coin minting process mean that coins are rarely exactly fair. You toss the coin 10 times and observe the following outcomes: H H H H H H H H H T (H=heads, T=tails). Assume coin tosses are independent. What is the maximum likelihood estimate of the next toss being heads?",
+    "choices":[
+      "5\/10",
+      "between 5\/10 and 9\/10",
+      "9\/10",
+      "more than 9\/10",
+      "none of the above"
+    ],
+    "answer":"C",
+    "group":"cs189",
+    "source":"course CSV",
+    "prediction":"B",
+    "output":"\\boxed{B}",
+    "correct":false,
+    "choice_probabilities":[
+      0.2173716426,
+      0.4601757526,
+      0.2173716426,
+      0.0622780137,
+      0.0428030118
+    ]
+  },
+  {
+    "id":"mcq_18",
+    "question":"Consider the setup of the previous problem (Problem 6). What is the maximum a posteriori (MAP) estimate of the next toss being heads?",
+    "choices":[
+      "5\/10",
+      "between 5\/10 and 9\/10",
+      "9\/10",
+      "more than 9\/10",
+      "none of the above"
+    ],
+    "answer":"B",
+    "group":"cs189",
+    "source":"course CSV",
+    "prediction":"B",
+    "output":"\\boxed{B}",
+    "correct":true,
+    "choice_probabilities":[
+      0.1769336462,
+      0.6175590754,
+      0.1561433822,
+      0.0348403007,
+      0.0145235974
+    ]
+  },
+  {
+    "id":"mcq_19",
+    "question":"Consider a binary classification problem with two outcomes: positive and negative. The F1 score of a classifier is the harmonic mean between precision and recall: F1 = 2 p\u00b7r \/ (p+r). Select the true statement relating F1 on the test set to the bias and variance of its estimated parameters. Assume the classical (non-interpolating) regime of bias and variance.",
+    "choices":[
+      "Low bias implies a high F1 score.",
+      "Low variance implies a high F1 score.",
+      "A low F1 score implies a high variance.",
+      "A high F1 score implies low bias.",
+      "none of the above"
+    ],
+    "answer":"D",
+    "group":"cs189",
+    "source":"course CSV",
+    "prediction":"B",
+    "output":"\\boxed{B}",
+    "correct":false,
+    "choice_probabilities":[
+      0.0585646406,
+      0.9161051512,
+      0.0037439123,
+      0.0167790521,
+      0.0048072785
+    ]
+  },
+  {
+    "id":"mcq_20",
+    "question":"Julia is using SNE to visualize her high-dimensional dataset in two dimensions. She runs her code twice to find that it outputs different visualizations each time. Why is this expected? Assume she did not fix a random seed.",
+    "choices":[
+      "This is expected due to the nonconvexity of the optimization objective, and also occurs with t-SNE.",
+      "This is expected due to the Gaussian distributions in SNE, and could be addressed by using t-SNE instead.",
+      "This is expected due to the iterative nature of SNE, and could be addressed by using PCA to find the solution to the SNE objective without gradient descent.",
+      "Decaf coldbrew latte is delicious",
+      "none of the above"
+    ],
+    "answer":"A",
+    "group":"cs189",
+    "source":"course CSV",
+    "prediction":"A",
+    "output":"\\boxed{A}",
+    "correct":true,
+    "choice_probabilities":[
+      0.6042003632,
+      0.1189740971,
+      0.2518681884,
+      0.0067120604,
+      0.0182452705
+    ]
+  },
+  {
+    "id":"mcq_21",
+    "question":"Which of the following is a problem with the sigmoid activation function, in the context of deep neural networks?",
+    "choices":[
+      "Sigmoid is prone to vanishing gradients at extreme values.",
+      "Sigmoid can take on negative values.",
+      "Sigmoid is non-linear, which provides less representation power.",
+      "Sigmoid is numerically unstable when the input is large.",
+      "none of the above"
+    ],
+    "answer":"A",
+    "group":"cs189",
+    "source":"course CSV",
+    "prediction":"A",
+    "output":"\\boxed{A}",
+    "correct":true,
+    "choice_probabilities":[
+      0.6359595656,
+      0.0090714758,
+      0.0042850617,
+      0.3404046297,
+      0.0102793286
+    ]
+  },
+  {
+    "id":"fa2025_Q3A",
+    "question":"In the bias\u2013variance decomposition, what does the term E[(t \u2013 h(x))^2] represent?",
+    "choices":[
+      "Bias",
+      "Bias^2",
+      "Variance",
+      "Variance^2",
+      "Noise"
+    ],
+    "answer":"E",
+    "group":"cs189",
+    "source":"course CSV",
+    "prediction":"C",
+    "output":"\\boxed{C}",
+    "correct":false,
+    "choice_probabilities":[
+      0.0710054359,
+      0.1125287585,
+      0.6799364835,
+      0.1330796481,
+      0.0034496763
+    ]
+  },
+  {
+    "id":"fa2025_Q3B",
+    "question":"In the bias\u2013variance decomposition, the expression E[(f_w(x) \u2013 E[f_w(x)])^2] corresponds to which concept?",
+    "choices":[
+      "Bias",
+      "Bias^2",
+      "Variance",
+      "Variance^2",
+      "Cold brew latte is delicious"
+    ],
+    "answer":"C",
+    "group":"cs189",
+    "source":"course CSV",
+    "prediction":"C",
+    "output":"\\boxed{C}",
+    "correct":true,
+    "choice_probabilities":[
+      0.1330754258,
+      0.0921153981,
+      0.7014368936,
+      0.0680398195,
+      0.0053324714
+    ]
+  },
+  {
+    "id":"fa2025_Q3C",
+    "question":"If we reduce the L1 regularization parameter \u03bb in a linear model, what most likely happens to (h(x) \u2013 E[f_w(x)])^2?",
+    "choices":[
+      "Increases",
+      "Stays the same",
+      "Decreases",
+      "Cappuccino is my favorite",
+      "The moon is made of cheese"
+    ],
+    "answer":"C",
+    "group":"cs189",
+    "source":"course CSV",
+    "prediction":"A",
+    "output":"\\boxed{A}",
+    "correct":false,
+    "choice_probabilities":[
+      0.5341541279,
+      0.0143466135,
+      0.4452080844,
+      0.0026607638,
+      0.0036304154
+    ]
+  },
+  {
+    "id":"fa2025_Q3D",
+    "question":"Suppose we change the feature basis to a constant feature \u03d5(x) = 1. What happens to the model variance E[(f_w(x) \u2013 E[f_w(x)])^2]?",
+    "choices":[
+      "Remains the same",
+      "Increases",
+      "Decreases",
+      "Avocado toast",
+      "Matcha cream puff"
+    ],
+    "answer":"C",
+    "group":"cs189",
+    "source":"course CSV",
+    "prediction":"B",
+    "output":"\\boxed{B}",
+    "correct":false,
+    "choice_probabilities":[
+      0.277684006,
+      0.3524269581,
+      0.3513989553,
+      0.0112873238,
+      0.0072027496
+    ]
+  }
+]

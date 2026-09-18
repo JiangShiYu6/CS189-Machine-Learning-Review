@@ -1,0 +1,100 @@
+"""Write the v2 Chinese report from completed, frozen experiment artifacts."""
+from pathlib import Path
+import json
+import numpy as np
+
+HERE = Path(__file__).resolve().parent
+OUT = HERE / "results_v2"
+GROUPS = {"specialized": "专业", "general": "通用"}
+
+
+def read(name):
+    return json.loads((OUT / name).read_text(encoding="utf-8"))
+
+
+def accuracy(item):
+    return f"{item['correct']}/{item['n']}（{item['accuracy']:.1%}）"
+
+
+def paired_interval(previous, selected, group):
+    before = {r["id"]: r for r in previous if r["group"] == group}
+    after = {r["id"]: r for r in selected if r["group"] == group}
+    assert before.keys() == after.keys() and before
+    delta = []
+    for key in sorted(before):
+        assert before[key]["answer"] == after[key]["answer"]
+        a = before[key]["prediction"] == before[key]["answer"]
+        b = after[key]["prediction"] == after[key]["answer"]
+        delta.append(int(b) - int(a))
+    values = np.asarray(delta, dtype=float)
+    rng = np.random.default_rng(189)
+    boot = values[rng.integers(0, len(values), size=(5000, len(values)))].mean(axis=1)
+    low, high = np.quantile(boot, [.025, .975])
+    return values.mean(), low, high, int((values == 1).sum()), int((values == -1).sum())
+
+
+def main():
+    # Deliberately require all final artifacts: this generator never runs a model.
+    selection = read("selection.json")
+    original_metrics = json.loads((HERE / "results" / "metrics.json").read_text(encoding="utf-8"))
+    audit = read("audit_metrics.json")
+    frames = {name: read(f"audit_{name}.json") for name in ("base", "previous", "selected")}
+    training = read("training_data_manifest.json")
+    public = read("public_metrics.json")
+    training_metrics = read("v2_training_metrics.json")
+    selected = selection["selected"]
+    candidates = selection["candidates"]
+    components = selection["components"]
+    for name, rows in frames.items():
+        assert len({r['id'] for r in rows}) == len(rows)
+        for group in GROUPS:
+            subset = [r for r in rows if r["group"] == group]
+            correct = sum(r["prediction"] == r["answer"] for r in subset)
+            assert audit[name][group]["n"] == len(subset)
+            assert audit[name][group]["correct"] == correct
+    lines = [
+        "# HW5 第二轮改进实验", "",
+        f"开发集选中的方案是 `{selected}`，组成部分为 " + "、".join(f"`{x}`" for x in components) + "。",
+        "选定方案随后用于新审计集和 `submission_v2.csv`。v2 的 Kaggle 分数尚未知，需重新提交后才能确认线上变化。", "",
+        "选择规则事先固定为专业准确率 × 0.65 + 通用准确率 × 0.35；通用准确率须至少达到 73/142 − 0.02，且不选择单独的原模型。所有候选都在此前已观察过的 217 道开发题上比较。", "",
+        "| 方案 | 开发集专业 | 开发集通用 | 新审计专业（仅统计） | 新审计通用 |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for label, dev, audit_key in [("原模型（原推理方法）", original_metrics["base"], "base"),
+                                  ("上一版提交方法", original_metrics["mixed"], "previous"),
+                                  ("本轮选中方法", candidates[selected]["metrics"], "selected")]:
+        lines.append("| " + " | ".join([label, accuracy(dev["specialized"]), accuracy(dev["general"]),
+                                             accuracy(audit[audit_key]["specialized"]), accuracy(audit[audit_key]["general"])]) + " |")
+    lines += ["", "表中原模型和上一版的开发结果来自原 results/metrics.json，新审计基准也使用原 sft_pipeline.predict_choices；选中方案使用新推理方法。这是权重、选项平均和位置处理等共同变化后的整体管线比较，不能作为单因素实验。", "",
+              "重现检查发现，旧 score_records 在 bfloat16 左填充批处理中没有显式传入 position_ids，预测会受同批题目长度影响。新推理使用 attention_mask.cumsum(-1) − 1，并将填充位置设为 1；24 个旧权重与提示候选和 4 个新权重候选均已用相同位置处理重新计算，以便公平选择。", "",
+              "新审计题在运行模型前固定，排除了旧训练、开发、公开课程题及隐藏题。专业组只有 80 道统计题，通用组为历史、地理、营养学和初等数学各 20 题；专业结果不能代表整个 CS189 或机器学习能力。原来的 217 道留出题已用于本轮选择，因此称为开发集。", "",
+              "| 新审计组 | 相比上一版的变化 | 配对 bootstrap 95% 区间 | 原错→新对 | 原对→新错 |",
+              "| --- | --- | --- | --- | --- |"]
+    for group, label in GROUPS.items():
+        delta, lo, hi, gained, lost = paired_interval(frames["previous"], frames["selected"], group)
+        lines.append(f"| {label} | {100*delta:+.2f} 个百分点 | [{100*lo:+.2f}, {100*hi:+.2f}] 个百分点 | {gained} | {lost} |")
+    lines += ["", "区间对同一道题的新旧正确性差值进行有放回重采样，seed=189，共 5,000 次，取 2.5% 和 97.5% 分位数。若区间包含 0，现有样本不足以清楚区分改进与抽样波动；该区间也不包含训练随机性和跨领域变化。", ""]
+    if any(x.startswith("v2_epoch") for x in components):
+        lines.append("本次提交使用了新训练权重；具体 epoch 和是否与旧模型合并，以以上组成部分为准。")
+    else:
+        lines.append("本次提交选中了已有权重配合新的推理方法。新训练实验仍保留在候选记录中，不能把提交结果归功于未采用的新权重。")
+    counts = training["selected_counts"]
+    lines += ["", f"新训练候选使用 {training['train_count']} 道题：原 MMLU 专业题 {counts['mmlu_specialized']} 道、通用回放题 {counts['mmlu_general']} 道，以及 AQuA 五选一数学题 {counts['aqua']} 道。AQuA 提供 E 选项的训练机会，本轮没有使用其 rationale。题干精确去重覆盖开发和审计集，对课程题额外执行近重复排除；这些检查不能保证识别所有改写题。", "",
+              "训练使用 rank=16、alpha=32 的 LoRA，学习率 5e-5，训练两轮。只对正确答案字母计算交叉熵，避免训练信号大量落在固定的 boxed 格式字符上。该 label-only loss 与旧版整段 completion loss 的归一化对象不同，不能直接比较数值高低。",
+              "本轮新权重训练时也未显式传入 position_ids，保留当时训练实现与日志；位置修复应用于后续候选重评估及最终推理。训练数据、损失和推理均有变化，不能把 loss 或准确率变化归因于单一改动。",
+              f"实际训练耗时为 {training_metrics.get('train_runtime', float('nan')):.1f} 秒，记录的训练 loss 为 {training_metrics.get('train_loss', float('nan')):.4f}。", "",
+              "三个 agent 分别研究推理方法、训练数据和评估隔离。推理方向尝试不同答案提示及选项循环平均：每次先把概率映射回原选项再合并，含位置引用的题保留原顺序。PriDe 论文分析了字母和位置偏好，为这类实验提供依据；本实现没有照搬完整 PriDe 算法。[论文](https://arxiv.org/abs/2309.03882)", "",
+              "训练数据方向使用 DeepMind 发布的 AQuA 五选一数据，版本及文件哈希记录在 manifest 中。[官方仓库](https://github.com/google-deepmind/AQuA) 评估方向固定新审计集，并避免根据公开课程题或 Kaggle 成绩挑选参数。方法是否有效以本次实际比较为准。", "",
+              f"方案冻结后才计算公开课程 25 题：{accuracy(public['cs189'])}。其中 21 题与隐藏测试重叠，所以这一结果只作描述。此前 Kaggle Public 为 40.476%，Private 为 35.294%；这两个分数没有用于本轮选参，也不能当作 v2 成绩。", "",
+              "复现时先安装 requirements.txt，并从头运行原 finetuning_tutorial.ipynb，生成 models/narrow、models/final 及数据缓存。权重未提交到 Git，跳过原 Notebook 会导致 sweep 找不到旧 adapter。随后在 hw5 目录依次运行以下命令。审计命令只允许首次评估，已有 audit_metrics.json 时会拒绝重复运行，保留其一次评估记录。", "",
+              "```bash", "python build_audit_v2.py", "python prepare_training_v2.py", "python run_improvements.py sweep",
+              "python train_v2.py", "python run_improvements.py select", "python check_selected_v2.py", "python run_improvements.py audit",
+              "python validate_v2.py", "python summarize_v2.py", "```", "",
+              "选中的候选、逐题预测和数据哈希分别保存在 results_v2/selection.json、audit_*.json 及各 manifest 中。重新提交 Kaggle 时上传 submission_v2.csv，保留上一版 submission.csv 作为对照。", ""]
+    destination = HERE / "improvements_v2.md"
+    destination.write_text("\n".join(lines), encoding="utf-8")
+    print(destination)
+
+
+if __name__ == "__main__":
+    main()
